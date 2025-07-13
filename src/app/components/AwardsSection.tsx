@@ -20,8 +20,8 @@ export function AwardsSection({ isLoaded }: AwardsSectionProps) {
                 isLoaded ? "animate-fade-in-up" : "opacity-0"
               }`}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                ACCOLADES
+              <h2 className="text-3xl font-bold text-gray-900">
+                Accolades
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Lalaguna Villas is proud to be consistently recognized among the best in the Philippines.

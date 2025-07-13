@@ -1,4 +1,4 @@
-export const rooms = [
+export const villas = [
     {
         "id": 387057,
         "gallery": {
