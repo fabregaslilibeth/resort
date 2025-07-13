@@ -10,7 +10,7 @@ export interface OfferSection {
 export const offersData: OfferSection[] = [
   {
     id: 'affordable-luxury',
-    title: 'AFFORDABLE LUXURY',
+    title: 'Affordable Luxury',
     content: `Lalaguna Villas Luxury Dive Resort & Spa is the premier luxury resort in Puerto Galera, featuring a blend of style, friendly service, and luxury comfort.
 
 Lalaguna Villas Resort - Puerto Galera's Premier Luxury Dive Resort
@@ -22,7 +22,7 @@ Lalaguna Villas - Puerto Galera's Premier Luxury Dive Resort`,
   },
   {
     id: 'amazing-diving',
-    title: 'AMAZING DIVING',
+    title: 'Amazing Diving',
     content: `Lalaguna Villas - Puerto Galera's premier luxury dive resort
 
 Experience some of the best diving in Asia with LLV Divers, our scuba diving center at Lalaguna Villas Sabang. Dive with our international team of PADI-certified professionals and explore the amazing dive sites in the area.
@@ -35,8 +35,8 @@ LLV Divers`,
     image: '/images/f-dive.png'
   },
   {
-    id: 'luxury-accommodation',
-    title: 'LUXURY ACCOMMODATION',
+    id: 'premium-accommodation',
+    title: 'Premium Accommodation',
     content: `Most of our villas feature spectacular ocean views of one of the most renowned tropical diving areas in Asia.
 
 All are equipped with the latest facilities and amenities, providing the highest western standard luxuries for your enjoyment and comfort.
@@ -53,7 +53,7 @@ Our Rooms`,
   },
   {
     id: 'outstanding-dining',
-    title: 'OUTSTANDING DINING',
+    title: 'Outstanding Dining',
     content: `Experience our exceptional international menu offering an extensive range of Asian and Western cuisine with a focus on fresh local produce and fresh seafood. Our Restaurant, Bar, and Room Service operate 24 hours.
 
 Our poolside bar offers a great selection of local and international beers, signature cocktails, and an extensive wine list, including an eclectic collection of exquisite imported wines from our cellar.
@@ -63,7 +63,7 @@ Restaurant & Bar`,
   },
   {
     id: 'services-amenities',
-    title: 'SERVICES & AMENITIES',
+    title: 'Services & Amenities',
     content: `With luxury amenities and outstanding service, our resort is in a class of its own among dive resorts in Puerto Galera.
 
 Lalaguna Villas - Poolside Dining`,
@@ -96,7 +96,7 @@ Lalaguna Villas - Poolside Dining`,
   },
   {
     id: 'food-beverage',
-    title: 'FOOD & BEVERAGE',
+    title: 'Food & Beverage',
     content: `Restaurant & Poolside Bar – 24 Hours
 Room Service – 24 Hours
 Extensive range of Asian and Western cuisine
@@ -115,7 +115,7 @@ Curved and/or Flat screen Samsung Smart TV`,
   },
   {
     id: 'diving-center',
-    title: 'DIVING CENTER',
+    title: 'Diving Center',
     content: `Lalaguna Villas - the Best Diving in Puerto Galera
 Diving Center
 PADI 5 Star Dive Resort
@@ -142,7 +142,7 @@ Modern dive speedboats for quick transit`,
   },
   {
     id: 'entertainment',
-    title: 'ENTERTAINMENT',
+    title: 'Entertainment',
     content: `Scuba diving – beginners to advanced
 Outdoor pool
 Pool sun lounges
@@ -155,7 +155,7 @@ Clubhouse with Karaoke & Games`,
   },
   {
     id: 'excursions-activities',
-    title: 'EXCURSIONS AND ACTIVITIES',
+    title: 'Excursions and Activities',
     content: `Aquatic Adventure
 Extreme Sports (Mud Go Karts, ATVs, Paintball & Zombieland Crossbow/Airgun) 
 Island Hopping on LLV's Speed Boat
@@ -174,7 +174,7 @@ Motorbike, Yacht rental`,
   },
   {
     id: 'transport',
-    title: 'TRANSPORT',
+    title: 'Transport',
     content: `VIP private transfer from Manila directly to our doorstep in our luxury car and craft (extra charge)
 Private Luxury Car – Hyundai Starex
 Minibus
@@ -183,7 +183,7 @@ Speedboat Water Taxi-Shuttle between resort and ferry ports (extra charge)`,
   },
   {
     id: 'luxurious-spa',
-    title: 'LUXURIOUS SPA',
+    title: 'Luxurious Spa',
     content: `WellZen Spa at Lalaguna Villas – Luxury for the Mind, Body, and Soul.
 
 Pamper your senses with our revitalizing therapies to ease away stress and enhance your physical and mental wellbeing.

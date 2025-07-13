@@ -5,6 +5,7 @@ import { offersData, OfferSection } from '@/data/offers';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollTrigger } from '../components/ScrollTrigger';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default function OffersPage() {
   const [selectedOffer, setSelectedOffer] = useState<OfferSection>(offersData[0]);
@@ -12,31 +13,85 @@ export default function OffersPage() {
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 py-8">
+        {/* Breadcrumb */}
+        <Breadcrumb 
+          BC1={{ link: "/offers", text: "Offers & Services" }}
+        />
+
         {/* Page Header */}
         <motion.div 
-          className="text-center mb-12"
+          className="mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold text-gray-900 mb-4">
-            Our Offers & Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Discover everything Lalaguna Villas has to offer - from luxury accommodation to world-class diving experiences
-          </p>
+           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-700">
+              Our Offers & Services
+            </h1>
         </motion.div>
 
+        {/* Header with Image - Full Width */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedOffer.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="mb-8"
+          >
+            {selectedOffer.image && (
+              <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src={selectedOffer.image}
+                  alt={selectedOffer.title}
+                  fill
+                  className="object-cover"
+                />
+                {/* <div className="absolute right-0 bottom-0 w-full bg-gradient-to-t from-black/50 to-transparent">
+                  <h2 className="text-4xl md:text-5xl font-bold text-center text-primary p-4">
+                    {selectedOffer.title}
+                  </h2>
+                </div> */}
+              </div>
+            )}
+          </motion.div>
+        </AnimatePresence>
+
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar Navigation */}
+          {/* Mobile Dropdown Navigation */}
+          <div className="lg:hidden mb-6">
+            <motion.div 
+              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <select
+                value={selectedOffer.id}
+                onChange={(e) => {
+                  const selected = offersData.find(offer => offer.id === e.target.value);
+                  if (selected) setSelectedOffer(selected);
+                }}
+                className="w-full px-3 py-2 text-base font-medium text-gray-700 bg-white border-0 focus:ring-2 focus:ring-blue-500 focus:outline-none cursor-pointer"
+              >
+                {offersData.map((offer) => (
+                  <option key={offer.id} value={offer.id}>
+                    {offer.title}
+                  </option>
+                ))}
+              </select>
+            </motion.div>
+          </div>
+
+          {/* Desktop Sidebar Navigation */}
           <motion.div 
-            className="lg:w-1/3"
+            className="hidden lg:block lg:w-1/3"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div className="bg-white rounded-lg shadow-lg p-6 sticky top-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Services</h2>
               <nav className="space-y-2">
                 {offersData.map((offer, index) => (
                   <motion.button
@@ -44,7 +99,7 @@ export default function OffersPage() {
                     onClick={() => setSelectedOffer(offer)}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-200 ${
                       selectedOffer.id === offer.id
-                        ? 'bg-blue-600 text-white shadow-md'
+                        ? 'bg-[#ff8804] text-white shadow-md'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                     initial={{ opacity: 0, x: -20 }}
@@ -62,7 +117,7 @@ export default function OffersPage() {
 
           {/* Content Area */}
           <motion.div 
-            className="lg:w-2/3"
+            className="w-full lg:w-2/3"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -77,30 +132,18 @@ export default function OffersPage() {
                   transition={{ duration: 0.4 }}
                   className="bg-white rounded-lg shadow-lg overflow-hidden"
                 >
-                  {/* Header with Image */}
-                  {selectedOffer.image && (
-                    <div className="relative h-64 w-full">
-                      <Image
-                        src={selectedOffer.image}
-                        alt={selectedOffer.title}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                        <h2 className="text-4xl font-bold text-white text-center px-4">
-                          {selectedOffer.title}
-                        </h2>
-                      </div>
-                    </div>
-                  )}
-
                   {/* Content */}
+                    <div className="">
+                  <h2 className="text-3xl font-bold text-primary p-4">
+                    {selectedOffer.title}
+                  </h2>
+                </div>
                   <div className="p-8">
-                    {!selectedOffer.image && (
+                    {/* {!selectedOffer.image && (
                       <h2 className="text-3xl font-bold text-gray-900 mb-6">
                         {selectedOffer.title}
                       </h2>
-                    )}
+                    )} */}
                     
                     <div className="prose prose-lg max-w-none">
                       <div className="whitespace-pre-line text-gray-700 leading-relaxed">
