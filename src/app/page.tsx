@@ -8,6 +8,7 @@ import { OffersSection } from './components/OffersSection';
 import { AccommodationSection } from './components/AccommodationSection';
 import { TestimonialsSection } from './components/TestimonialsSection';
 import { AwardsSection } from './components/AwardsSection';
+import { BookDirectSection } from './components/BookDirectSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 
@@ -28,6 +29,7 @@ export default function Home() {
       <AwardsSection isLoaded={isLoaded} />
       <AccommodationSection isLoaded={isLoaded} />
       <TestimonialsSection isLoaded={isLoaded} />
+      <BookDirectSection isLoaded={isLoaded} />
       <ContactSection isLoaded={isLoaded} />
       <Footer />
     </div>
