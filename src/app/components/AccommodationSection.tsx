@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ScrollTrigger } from './ScrollTrigger';
-import { rooms } from '../../data/rooms';
+import { villas } from '../../data/villas';
 import Link from 'next/link';
 
 interface AccommodationSectionProps {
@@ -103,18 +103,18 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
     <section id="accommodation" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-          <div className={`text-center mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Accommodation
+          <div className={`mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <h2 className="text-3xl font-bold text-gray-900">
+              Our Villas
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose from our range of luxurious accommodations designed for your comfort and relaxation
+            <p className="text-xl text-gray-600">
+              Choose from our range of luxurious accommodations designed for your comfort and relaxation.
             </p>
           </div>
         </ScrollTrigger>
 
         <div className="space-y-8">
-          {rooms.slice(3, 6).map((room: Room, roomIndex: number) => {
+          {villas.slice(3, 6).map((room: Room, roomIndex: number) => {
             const roomName = getRoomTranslation(room, 'name');
             const roomDescription = getRoomTranslation(room, 'description');
             const currentImageIndex = activeImageIndex[room.id] || 0;

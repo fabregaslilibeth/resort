@@ -47,39 +47,21 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
             backgroundSize: 'cover'
           }}
         >
-      {/* Background Image */}
-        {/* <div 
-          className="w-full h-full bg-cover bg-center bg-no-repeat"
-          style={{ 
-            backgroundImage: 'url(https://lalagunavillas.com/wp-content/uploads/2021/04/Lalaguna-Villas-Terrace.jpg)',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/30"></div>
-        </div> */}
 
       {/* Hero Content - Right Aligned */}
       <ScrollTrigger animationType="slide-bottom" threshold={0.3} className="relative w-full">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 px-4 sm:px-6 lg:px-8">
           <div className={`flex justify-end ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <div className="text-center text-white">
-              <h1 className="text-4xl md:text-6xl font-bold mb-2 leading-wide">
+            <div className="text-white">
+              <h1 className="text-4xl mb-2 leading-wide">
                 Dive into luxury at
               </h1>
-              <h2 className="text-5xl md:text-7xl font-bold mb-2 leading-tight text-amber-400">
+              <h2 className="text-5xl md:text-9xl mb-2 leading-tight text-amber-400 font-whisper">
                 Lalaguna Villas
               </h2>
-              <p className="text-xl md:text-2xl mb-8 text-blue-100">
+              <p className="text-4xl mb-2 leading-wide text-right font-">
                 A Luxury Resort & Spa
               </p>
-              <button 
-                className="bg-[#FF8804] text-white px-8 py-4 rounded-[10px] text-lg font-semibold hover:bg-[#FF8804]/90 transition-all hover:scale-105"
-                onClick={handleBookNow}
-              >
-                Book now
-              </button>
             </div>
           </div>
         </div>
@@ -87,7 +69,7 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
 
       {/* Booking Form - Bottom Half */}
     <div className="absolute -bottom-20 left-0 right-0 z-20">
-        <div className="w-11/12 mx-auto bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
+        <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
             {/* Room Type */}
             <div>

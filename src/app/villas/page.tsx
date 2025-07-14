@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ScrollTrigger } from '../components/ScrollTrigger';
-import { rooms } from '../../data/rooms';
+import { villas } from '../../data/villas';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 // Removed: import Link from 'next/link';
@@ -65,10 +65,10 @@ interface Room {
 }
 
 export default function RoomsPage() {
-  return <Rooms isLoaded={true} />;
+  return <Villas isLoaded={true} />;
 }
 
-export function Rooms({ isLoaded }: RoomsSectionProps) {
+export function Villas({ isLoaded }: RoomsSectionProps) {
   const [activeImageIndex, setActiveImageIndex] = useState<{ [roomId: number]: number }>({});
 
   const getRoomTranslation = (room: Room, fieldName: string): string => {
@@ -117,7 +117,7 @@ export function Rooms({ isLoaded }: RoomsSectionProps) {
         </ScrollTrigger>
 
         <div className="space-y-8">
-          {rooms.map((room: Room, roomIndex: number) => {
+          {villas.map((room: Room, roomIndex: number) => {
             const roomName = getRoomTranslation(room, 'name');
             const roomDescription = getRoomTranslation(room, 'description');
             const currentImageIndex = activeImageIndex[room.id] || 0;
@@ -141,7 +141,7 @@ export function Rooms({ isLoaded }: RoomsSectionProps) {
                         <>
                           {/* Main Image */}
                           <div className="relative h-full">
-                            <Link href={`/rooms/${room.id}`} scroll={false}>
+                            <Link href={`/villas/${room.id}`} scroll={false}>
                               <motion.img
                                 layoutId={`room-image-${room.id}`}
                                 src={`https://r.profitroom.pl/lalagunavillasluxurydiveresortandspa/images/gallery/thumbs/400x0/${room.gallery.images[0].fileName}`}
@@ -216,7 +216,7 @@ export function Rooms({ isLoaded }: RoomsSectionProps) {
 
                         {/* View Details Link */}
                         <div className="pt-2">
-                          <a href={`/rooms/${room.id}`} className="text-blue-600 hover:text-blue-700 font-semibold text-sm">
+                          <a href={`/villas/${room.id}`} className="text-blue-600 hover:text-blue-700 font-semibold text-sm">
                             View Details →
                           </a>
                         </div>

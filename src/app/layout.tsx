@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Roboto } from "next/font/google";
+import { Whisper } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
-const montserrat = Montserrat({
+const roboto = Roboto({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const whisper = Whisper({
+  variable: "--font-whisper",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 
@@ -21,9 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} antialiased`}
+        className={`${roboto.variable} ${whisper.variable} antialiased`}
       >
+        <Navbar isScrolling={false} />
         {children}
+        <Footer />
       </body>
     </html>
   );
