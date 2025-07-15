@@ -144,6 +144,57 @@ export default function PADIDivemasterInternshipPage() {
         </div>
       </div>
 
+ {/* Why Choose Lalaguna Villas */}
+ <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+                Why Choose Lalaguna Villas Luxury Dive Resort & Spa?
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                Nestled in the breathtaking beauty of Puerto Galera, Lalaguna Luxury Villas offers the perfect blend 
+                of comfort, adventure, and professional training. Our resort provides affordable accommodation in 
+                state-of-the-art facilities with unparalleled hospitality, ensuring an unforgettable diving experience.
+              </p>
+              <p className="text-lg text-gray-700 mb-6">
+                We are also a PADI 5-star Instructor Development Center, your training will be conducted by instructors 
+                that understand the demands of the next level of training and will properly prepare you for it. Should 
+                you choose to continue your journey on to PADI Open Water Scuba Instructor, you can join one of our 
+                PADI Instructor Development programs (PADI IDC) in the same training facility.
+              </p>
+            </div>
+            <div className="relative">
+              <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-8 text-white shadow-2xl">
+                <h3 className="text-2xl font-bold mb-6">Course Highlights</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400">✓</span>
+                    <span>4-week comprehensive program</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400">✓</span>
+                    <span>Unlimited diving during course</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400">✓</span>
+                    <span>Accommodation included</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400">✓</span>
+                    <span>PADI 5-star IDC center</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-green-400">✓</span>
+                    <span>Professional equipment available</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Course Packages */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -238,57 +289,6 @@ export default function PADIDivemasterInternshipPage() {
               </div>
                );
              })}
-          </div>
-        </div>
-      </div>
-
-      {/* Why Choose Lalaguna Villas */}
-      <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Why Choose Lalaguna Villas Luxury Dive Resort & Spa?
-              </h2>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Nestled in the breathtaking beauty of Puerto Galera, Lalaguna Luxury Villas offers the perfect blend 
-                of comfort, adventure, and professional training. Our resort provides affordable accommodation in 
-                state-of-the-art facilities with unparalleled hospitality, ensuring an unforgettable diving experience.
-              </p>
-              <p className="text-lg text-gray-700 mb-6">
-                We are also a PADI 5-star Instructor Development Center, your training will be conducted by instructors 
-                that understand the demands of the next level of training and will properly prepare you for it. Should 
-                you choose to continue your journey on to PADI Open Water Scuba Instructor, you can join one of our 
-                PADI Instructor Development programs (PADI IDC) in the same training facility.
-              </p>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-3xl p-8 text-white shadow-2xl">
-                <h3 className="text-2xl font-bold mb-6">Course Highlights</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400">✓</span>
-                    <span>4-week comprehensive program</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400">✓</span>
-                    <span>Unlimited diving during course</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400">✓</span>
-                    <span>Accommodation included</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400">✓</span>
-                    <span>PADI 5-star IDC center</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-green-400">✓</span>
-                    <span>Professional equipment available</span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
