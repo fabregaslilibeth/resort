@@ -13,7 +13,7 @@ const MENU_ITEMS = [
     dropdown: [
       { name: 'Sustainability', href: '/sustainability' },
       { name: 'Gallery', href: '/gallery' },
-      { name: 'Blog', href: '/blog' }
+      { name: 'Blog', href: '/blogs' }
     ]
   },
   { name: 'Villas', href: '/villas' },
@@ -23,19 +23,20 @@ const MENU_ITEMS = [
     dropdown: [
       { name: 'LLV Divers', href: '/dive/llv-divers' },
       { name: 'Go Professional', href: '/dive/padi-divemaster-internship' },
-      { name: 'Diving Courses', href: '/diving-courses' },
-      { name: 'Dive Sites', href: '/dive-sites' },
+      { name: 'Diving Courses', href: '/dive/diving-courses' },
+      { name: 'Dive Sites', href: '/dive/dive-sites' },
       { name: 'LLV Charters', href: '/llv-charters' },
       { name: 'LLV Catamaran', href: '/llv-catamaran' },
-      { name: 'Diving Blog', href: '/diving-blog' },
+      { name: 'Diving Blog', href: '/blogs/diving' },
     ]
   },
   {
     name: 'Dining', 
     href: '/dining',
     dropdown: [
-      { name: 'Menu', href: '/menu' },
-      { name: 'Chinese Menu', href: '/chinese-menu' },
+      { name: 'Restaurant', href: '/dining/restaurant' },
+      { name: 'Menu', href: '/dining/menu' },
+      { name: 'Chinese Menu', href: '/dining/chinese-menu' },
     ]
   },
   { 
