@@ -27,7 +27,7 @@ const MENU_ITEMS = [
       { name: 'Dive Sites', href: '/dive/dive-sites' },
       { name: 'LLV Charters', href: '/llv-charters' },
       { name: 'LLV Catamaran', href: '/llv-catamaran' },
-      { name: 'Diving Blog', href: '/blogs/diving' },
+      { name: 'Diving Blog', href: '/blogs' },
     ]
   },
   {

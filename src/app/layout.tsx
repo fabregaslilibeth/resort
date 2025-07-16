@@ -33,7 +33,9 @@ export default function RootLayout({
         className={`${roboto.variable} ${whisper.variable} antialiased`}
       >
         <Navbar isScrolling={false} />
-        {children}
+        <div className="pt-20">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
