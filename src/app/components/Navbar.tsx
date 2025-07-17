@@ -177,7 +177,7 @@ export function Navbar({ isScrolling }: NavbarProps) {
                                 >
                                   <Link 
                                     href={dropdownItem.href}
-                                    className="block px-4 py-1 text-gray-700 hover:text-white hover:bg-primary transition-all duration-500 rounded-2xl group/item"
+                                    className="block px-4 py-1 text-gray-700 hover:text-primary transition-all duration-500 rounded-2xl group/item"
                                   >
                                     <div className="flex items-center justify-between">
                                       <span className="font-medium">{dropdownItem.name}</span>
