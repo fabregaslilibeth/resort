@@ -26,7 +26,7 @@ export default function RestaurantPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                Lalaguna Restaurant
+                Dining & Bar
               </motion.h1>
               <motion.p 
                 className="text-xl text-gray-600 max-w-3xl mx-auto mb-8"
