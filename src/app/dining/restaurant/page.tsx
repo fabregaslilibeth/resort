@@ -64,9 +64,7 @@ export default function RestaurantPage() {
                   Culinary Excellence
                 </h2>
                 <p className="text-gray-600 mb-6 text-lg">
-                  Our restaurant offers a unique blend of traditional Indonesian cuisine and international favorites, 
-                  all prepared with the freshest local ingredients. Our expert chefs create memorable dining 
-                  experiences that showcase the rich flavors of the region.
+                Enjoy a sumptuous array of cuisine from around the world at our renowned restaurant. Our executive chef and his team offer an extensive range of international cuisine with a focus on fresh local produce.
                 </p>
                 <p className="text-gray-600 mb-6 text-lg">
                   From romantic candlelit dinners to casual beachfront lunches, our restaurant provides 
