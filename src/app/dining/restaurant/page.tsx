@@ -64,12 +64,8 @@ export default function RestaurantPage() {
                   Culinary Excellence
                 </h2>
                 <p className="text-gray-600 mb-6 text-lg">
-                Enjoy a sumptuous array of cuisine from around the world at our renowned restaurant. Our executive chef and his team offer an extensive range of international cuisine with a focus on fresh local produce.
-                </p>
-                <p className="text-gray-600 mb-6 text-lg">
-                  From romantic candlelit dinners to casual beachfront lunches, our restaurant provides 
-                  the perfect setting for every dining occasion. Enjoy breathtaking ocean views while 
-                  savoring expertly crafted dishes and fine wines.
+                  Enjoy a sumptuous array of cuisine from around the world at our renowned restaurant. 
+                  Our executive chef and his team offer an extensive range of international cuisine with a focus on fresh local produce.
                 </p>
                 <div className="grid grid-cols-2 gap-6 mt-8">
                   <div className="text-center p-4 bg-blue-50 rounded-xl">
@@ -190,7 +186,7 @@ export default function RestaurantPage() {
                 <h2 className="text-4xl font-bold text-gray-900 mb-6">
                   Unforgettable Dining Experience
                 </h2>
-                                   <p className="text-gray-600 mb-6 text-lg">
+                    <p className="text-gray-600 mb-6 text-lg">
                      Our restaurant combines exceptional cuisine with breathtaking ocean views, 
                      creating the perfect setting for memorable meals. Whether you&apos;re celebrating 
                      a special occasion or enjoying a casual dinner, our attentive staff ensures 
