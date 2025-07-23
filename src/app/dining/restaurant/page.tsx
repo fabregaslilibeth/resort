@@ -121,7 +121,6 @@ export default function RestaurantPage() {
                     <li>• Continental breakfast buffet</li>
                     <li>• Made-to-order omelets</li>
                     <li>• Fresh tropical fruits</li>
-                    <li>• Artisan breads & pastries</li>
                   </ul>
                 </div>
               </div>
