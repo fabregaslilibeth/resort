@@ -84,6 +84,7 @@ export default function RestaurantPage() {
             <ScrollTrigger animationType="slide-left" threshold={0.2}>
               <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
                 <p className="text-gray-500">Restaurant Interior Image</p>
+                <p className="text-gray-500">Restaurant Interior Image</p>
               </div>
             </ScrollTrigger>
           </div>
