@@ -1,9 +1,6 @@
 "use client";
 
 import { ScrollTrigger } from "./ScrollTrigger";
-import Image from "next/image";
-import award1 from "@/images/awards/1.png";
-import agoda from "@/images/awards/agoda.png";
 
 interface AwardsSectionProps {
   isLoaded: boolean;
@@ -20,7 +17,7 @@ export function AwardsSection({ isLoaded }: AwardsSectionProps) {
                 isLoaded ? "animate-fade-in-up" : "opacity-0"
               }`}
             >
-              <h2 className="text-3xl font-bold text-gray-900">
+              <h2 className="text-3xl font-normal text-gray-900 uppercase">
                 Accolades
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">

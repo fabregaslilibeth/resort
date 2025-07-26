@@ -21,7 +21,7 @@ export function OffersSection() {
   };
 
   return (
-    <section className="py-16 px-4 bg-white pt-32">
+    <section className="py-16 px-4 bg-white pt-32 font-montserrat">
       <div className="max-w-7xl mx-auto">
         <ScrollTrigger>
           {/* Section Header */}
@@ -32,7 +32,7 @@ export function OffersSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <motion.h2 
-              className="text-3xl font-bold text-gray-900"
+              className="text-3xl font-normal text-gray-900 font-montserrat uppercase"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -99,11 +99,11 @@ export function OffersSection() {
                     }`}>
                       {offer.title}
                     </h3>
-                    <p className={`text-white/90 line-clamp-2 ${
+                    {/* <p className={`text-white/90 line-clamp-2 ${
                       isLarge ? 'text-sm' : 'text-xs'
                     }`}>
                       {offer.content.substring(0, isLarge ? 120 : 60)}...
-                    </p>
+                    </p> */}
                     
                     {/* Hover indicator */}
                     <div className="mt-2 flex items-center text-white/80 text-xs">
