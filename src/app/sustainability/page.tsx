@@ -89,7 +89,7 @@ export default function Sustainability() {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-5xl md:text-7xl mb-6"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 30 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -135,7 +135,7 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl font-normal text-gray-900 mb-6">
               ECO-CONSCIOUS
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
@@ -165,7 +165,7 @@ export default function Sustainability() {
                 viewport={{ once: true }}
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                <h3 className="text-2xl font-normal text-gray-900 mb-4">{feature.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
@@ -183,8 +183,8 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Our Achievements</h2>
-            <p className="text-xl text-green-100">Recognition for our commitment to sustainable tourism</p>
+            <h2 className="text-3xl font-normal mb-6 uppercase">Our Achievements</h2>
+            <p className="text-green-100">Recognition for our commitment to sustainable tourism</p>
           </motion.div>
           
           <motion.div 
@@ -226,10 +226,10 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-normal text-gray-900 mb-6 uppercase">
               A CONTINUOUS PROCESS
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="">
               We have made significant strides in all of these areas, and also continue to advance in other areas that are not part of the requirements. To us, sustainable tourism is about re-focusing and adapting, ensuring the balance between environmental limits and usage is maintained.
             </p>
           </motion.div>
@@ -253,8 +253,8 @@ export default function Sustainability() {
                 viewport={{ once: true }}
               >
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{initiative.title}</h3>
-                  <p className="text-gray-600 leading-relaxed text-lg">{initiative.content}</p>
+                  <h3 className="text-2xl font-normal text-gray-900 mb-4 uppercase">{initiative.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{initiative.content}</p>
                 </div>
                 <div className="flex-1">
                   <div className="aspect-video bg-gradient-to-br from-green-400 to-blue-500 rounded-2xl shadow-lg"></div>
@@ -275,10 +275,10 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-normal text-gray-900 mb-6 uppercase">
               Our Conservation Partnership
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="">
               Working with Blue Alliance Philippines for marine conservation and coral reef protection
             </p>
           </motion.div>
@@ -291,11 +291,11 @@ export default function Sustainability() {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-6">Blue Alliance Partnership</h3>
-              <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              <h3 className="text-3xl font-normal text-gray-900 mb-6 uppercase">Blue Alliance Partnership</h3>
+              <p className="text-gray-600 leading-relaxed mb-6">
                 Our guests, and members of our team, got a chance to learn about, donate to, and indeed hang out with some of the great people who work for our partners in the marine conservation group Blue Alliance Philippines.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed">
                 This partnership allows us to actively participate in coral reef restoration and marine life protection programs, ensuring the preservation of the underwater ecosystem that makes Puerto Galera a world-class diving destination.
               </p>
             </div>
@@ -314,10 +314,10 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl font-normal text-gray-900 mb-6 uppercase">
               Learn More About Our Initiatives
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-600">
               Read our blog posts to learn more about specific eco-conscious projects that we&apos;ve completed, and continue to improve, at Lalaguna Villas.
             </p>
           </motion.div>
@@ -336,7 +336,7 @@ export default function Sustainability() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Choosing the Perfect Dive Resort</h3>
+              <h3 className="text-xl text-gray-900 mb-4 uppercase">Choosing the Perfect Dive Resort</h3>
               <p className="text-gray-600 mb-4">Jul 14, 2024 | Conservation, dive sites, Diving, Marine life, Puerto Galera, Resort, Services, Sustainability</p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Diving is a thrilling adventure that offers unparalleled access to the wonders of the underwater world. But to make the most of your diving experience, selecting the right dive resort in Puerto Galera is crucial.
@@ -353,7 +353,7 @@ export default function Sustainability() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Conservation Partnership with Blue Alliance</h3>
+              <h3 className="text-xl text-gray-900 mb-4 uppercase">Our Conservation Partnership with Blue Alliance</h3>
               <p className="text-gray-600 mb-4">Sep 16, 2023 | Conservation, Marine life, Puerto Galera, Sustainability, Team Building</p>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Our guests, and members of our team, got a chance to learn about, donate to, and indeed hang out with some of the great people who work for our partners in the marine conservation group Blue Alliance Philippines.
@@ -375,10 +375,10 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl font-semibold mb-6 uppercase">
               Experience Sustainable Luxury
             </h2>
-            <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+            <p className="text-green-100 mb-8">
               We know that many of our guests also feel strongly about being eco-conscious, as many of you are avid divers that value the natural ecosystem in this region. We&apos;re proud of our initiatives to conserve our natural resources and are happy to give interested guests a tour of our facilities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

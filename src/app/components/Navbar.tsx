@@ -127,7 +127,7 @@ export function Navbar({ isScrolling }: NavbarProps) {
             </div>
             
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-1 font-montserrat">
               {MENU_ITEMS.map((item) => (
                 <div
                   key={item.name}

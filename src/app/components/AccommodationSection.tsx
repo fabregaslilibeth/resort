@@ -104,7 +104,7 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
           <div className={`mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-normal text-gray-900 uppercase">
               Our Villas
             </h2>
             <p className="text-xl text-gray-600">
@@ -129,7 +129,7 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
               >
                 <div 
                   className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
-                  onClick={() => handleRoomClick(roomName)}
+                  onClick={() => handleRoomClick(room)}
                 >
                   <div className="grid lg:grid-cols-3 gap-0">
                     {/* Image Gallery */}
@@ -200,7 +200,7 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
                     <div className="lg:col-span-2 p-6">
                       <div className="space-y-4">
                         {/* Room Name */}
-                        <h3 className="text-2xl font-bold text-gray-900">{roomName}</h3>
+                        <h3 className="text-xl font-normal text-gray-900 uppercase">{roomName}</h3>
                         
                         {/* Room Description */}
                         <div 

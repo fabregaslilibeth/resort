@@ -33,7 +33,7 @@ export function TestimonialsSection({ isLoaded }: TestimonialsSectionProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
           <div className={`mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-normal text-gray-900 uppercase">
               What Our Guests Say
             </h2>
           </div>
