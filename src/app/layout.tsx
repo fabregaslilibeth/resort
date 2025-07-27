@@ -5,6 +5,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import BackToTop from "./components/BackToTop";
 
 const roboto = Roboto({
   variable: "--font-geist-sans",
@@ -43,6 +44,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

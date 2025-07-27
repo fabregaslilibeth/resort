@@ -1,0 +1,149 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Breadcrumb from "../../../components/Breadcrumb";
+import { ScrollTrigger } from "../../../components/ScrollTrigger";
+import { categoryToSlug } from "./page";
+
+interface MenuItem {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  price?: number;
+  image?: string;
+  code?: string;
+}
+
+interface MenuCategoryClientProps {
+  category: string;
+  categoryItems: MenuItem[];
+  featuredItems: MenuItem[];
+}
+
+export default function MenuCategoryClient({ 
+  category, 
+  categoryItems, 
+  featuredItems 
+}: MenuCategoryClientProps) {
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Breadcrumb */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8">
+        <Breadcrumb
+          BC1={{ link: "/dining", text: "Dining" }}
+          BC2={{ link: "/dining/menu", text: "Menu" }}
+          BC3={{
+            link: `/dining/menu/${categoryToSlug(category)}`,
+            text: category,
+          }}
+        />
+      </div>
+
+      {/* Featured Items (First 3 as Cards) */}
+      {featuredItems.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
+              <div className="text-center mb-16">
+                <h2 className="text-3xl text-gray-900 mb-6 uppercase">
+                  Featured {category} Items
+                </h2>
+                <p className="text-gray-600">
+                  Our most popular {category.toLowerCase()} selections
+                </p>
+              </div>
+            </ScrollTrigger>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredItems.map((item, itemIndex) => (
+                <motion.div
+                  key={item.id}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: itemIndex * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className="h-48 overflow-hidden">
+                    {item.image && (
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                      />
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="text-gray-900 uppercase">{item.title}</h4>
+                      {item.price !== undefined && (
+                        <span className="text-gray-600">
+                          {item.price === 0
+                            ? "POA"
+                            : item.price.toLocaleString()}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-gray-600 line-clamp-2 mb-2">
+                      {item.content}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Full Menu List */}
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl text-gray-900 mb-6 uppercase">
+                Complete {category} Menu
+              </h2>
+              <p className="text-gray-600">
+                Browse our full selection of {category.toLowerCase()} items
+              </p>
+            </div>
+          </ScrollTrigger>
+
+          <div className="space-y-8">
+            {categoryItems.map((item, index) => (
+              <motion.div
+                key={item.id}
+                className="border-b border-gray-200 pb-6 last:border-b-0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+              >
+                <div className="flex justify-between items-start gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-gray-900 uppercase">{item?.title}</h3>
+                      {item.code && (
+                        <span className="text-xs text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded">
+                          {item.code}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-gray-600">{item.content}</p>
+                  </div>
+                  <div className="text-right min-w-[100px]">
+                    {item.price !== undefined && (
+                      <span className="text-gray-600 uppercase">
+                        {item.price === 0 ? "POA" : item.price.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+} 

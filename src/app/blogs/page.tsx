@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 import Breadcrumb from "../components/Breadcrumb";
 
 export default function Blogs() {
-    const [selectedCategory, setSelectedCategory] = useState('all');
-    const [selectedTag, setSelectedTag] = useState('all');
+    const [selectedCategory] = useState('all');
+    const [selectedTag] = useState('all');
     const router = useRouter();
     
     const filteredBlogs = blogsData.filter((blog) => {

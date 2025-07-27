@@ -5,11 +5,7 @@ import { ScrollTrigger } from '../components/ScrollTrigger';
 import { villas } from '../../data/villas';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-// Removed: import Link from 'next/link';
-
-interface RoomsSectionProps {
-  isLoaded: boolean;
-}
+import Breadcrumb from '../components/Breadcrumb';
 
 interface RoomImage {
   title: string;
@@ -64,11 +60,7 @@ interface Room {
   attributes?: RoomAttributes;
 }
 
-export default function RoomsPage() {
-  return <Villas isLoaded={true} />;
-}
-
-export function Villas({ isLoaded }: RoomsSectionProps) {
+function Villas({ isLoaded }: { isLoaded: boolean }) {
   const [activeImageIndex, setActiveImageIndex] = useState<{ [roomId: number]: number }>({});
 
   const getRoomTranslation = (room: Room, fieldName: string): string => {
@@ -100,17 +92,22 @@ export function Villas({ isLoaded }: RoomsSectionProps) {
     }));
   };
 
-  // Remove handleRoomClick function and its usage on the card
-
   return (
     <section id="accommodation" className="py-20 bg-white">
+        {/* Breadcrumb */}
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8">
+        <Breadcrumb
+          BC1={{ link: "/villas", text: "Villas" }}
+        />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
         <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-          <div className={`text-center mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <div className={`mb-16 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}>
+            <h2 className="text-3xl text-gray-900 mb-6 uppercase">
               Accommodation
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-gray-600">
               Choose from our range of luxurious accommodations designed for your comfort and relaxation
             </p>
           </div>
@@ -132,7 +129,6 @@ export function Villas({ isLoaded }: RoomsSectionProps) {
               >
                 <div 
                   className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
-                  // Removed onClick={() => handleRoomClick(room)}
                 >
                   <div className="grid lg:grid-cols-3 gap-0">
                     {/* Image Gallery */}
@@ -206,17 +202,17 @@ export function Villas({ isLoaded }: RoomsSectionProps) {
                     <div className="lg:col-span-2 p-6">
                       <div className="space-y-4">
                         {/* Room Name */}
-                        <h3 className="text-2xl font-bold text-gray-900">{roomName}</h3>
+                        <h3 className="text-2xl text-gray-900 uppercase">{roomName}</h3>
                         
                         {/* Room Description */}
                         <div 
-                          className="text-gray-600 leading-relaxed line-clamp-3"
+                          className="text-gray-600 line-clamp-3"
                           dangerouslySetInnerHTML={{ __html: roomDescription }}
                         />
 
                         {/* View Details Link */}
                         <div className="pt-2">
-                          <a href={`/villas/${room.id}`} className="text-blue-600 hover:text-blue-700 font-semibold text-sm">
+                          <a href={`/villas/${room.id}`} className="text-primary hover:text-secondary text-sm">
                             View Details →
                           </a>
                         </div>
@@ -232,4 +228,8 @@ export function Villas({ isLoaded }: RoomsSectionProps) {
       </div>
     </section>
   );
+}
+
+export default function VillasPage() {
+  return <Villas isLoaded={true} />;
 } 

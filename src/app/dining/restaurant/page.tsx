@@ -4,10 +4,18 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Breadcrumb from "../../components/Breadcrumb";
 import { ScrollTrigger } from "../../components/ScrollTrigger";
-import BackToTop from "../../components/BackToTop";
 import { menuItem } from "../../../data/menu";
 import { menuCategories } from "../../../data/menuCategories";
 import { useRef } from "react";
+
+// Helper function to convert category name to URL slug
+function categoryToSlug(categoryName: string): string {
+  return categoryName
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "-");
+}
 
 export default function RestaurantPage() {
   // Get featured categories from menuCategories
@@ -60,7 +68,10 @@ export default function RestaurantPage() {
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8">
-        <Breadcrumb BC1={{ link: "/dining", text: "Dining" }} />
+        <Breadcrumb
+          BC1={{ link: "/dining", text: "Dining" }}
+          BC2={{ link: "/dining/restaurant", text: "Restaurant" }}
+        />
       </div>
 
       {/* Hero Section */}
@@ -220,10 +231,7 @@ export default function RestaurantPage() {
                       <div className="w-24 h-1 bg-blue-600"></div>
                     </div>
                     <a
-                      href={`/dining/menu/${category
-                        .toLowerCase()
-                        .replace(/[^a-z0-9]+/g, "-")
-                        .replace(/^-+|-+$/g, "")}`}
+                      href={`/dining/menu/${categoryToSlug(category)}`}
                       className="text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300 flex items-center gap-2"
                     >
                       View All
@@ -495,9 +503,6 @@ export default function RestaurantPage() {
           </div>
         </div>
       </section>
-
-      {/* Back to Top Button */}
-      <BackToTop />
     </div>
   );
 }

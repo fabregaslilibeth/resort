@@ -22,8 +22,8 @@ const MENU_ITEMS = [
     href: '/diving',
     dropdown: [
       { name: 'LLV Divers', href: '/dive/llv-divers' },
-      { name: 'Go Professional', href: '/dive/padi-divemaster-internship' },
       { name: 'Diving Courses', href: '/dive/diving-courses' },
+      { name: 'Go Professional', href: '/dive/padi-divemaster-internship' },
       { name: 'Dive Sites', href: '/dive/dive-sites' },
       { name: 'LLV Charters', href: '/llv-charters' },
       { name: 'LLV Catamaran', href: '/llv-catamaran' },

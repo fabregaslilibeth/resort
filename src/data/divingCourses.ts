@@ -194,7 +194,7 @@ export const padiCoursesData = [
     duration: "1 Day"
   },
   {
-    title: "Divemaster Course",
+    title: "Divemaster Course - Bronze",
     badge: "Professional",
     badgeColor: "gray",
     description: "Completing the PADI Divemaster course is the first step in becoming a scuba professional, giving you a sense of diving self-confidence and achievement.",
@@ -203,8 +203,34 @@ export const padiCoursesData = [
       "Assist instructors",
       "Advanced navigation"
     ],
-    price: "Contact Us",
-    duration: "Professional Level"
+    price: "$1550 +fees",
+    duration: "More information"
+  },
+  {
+    title: "Divemaster Course - Silver",
+    badge: "Professional",
+    badgeColor: "gray",
+    description: "Completing the PADI Divemaster course is the first step in becoming a scuba professional, giving you a sense of diving self-confidence and achievement.",
+    features: [
+      "Professional certification",
+      "Assist instructors",
+      "Advanced navigation"
+    ],
+    price: "$1950 +fees",
+    duration: "More information"
+  },
+  {
+    title: "Divemaster Course - Gold",
+    badge: "Professional",
+    badgeColor: "gray",
+    description: "Completing the PADI Divemaster course is the first step in becoming a scuba professional, giving you a sense of diving self-confidence and achievement.",
+    features: [
+      "Professional certification",
+      "Assist instructors",
+      "Advanced navigation"
+    ],
+    price: "$2450 +fees",
+    duration: "More information"
   }
 ];
 
@@ -308,10 +334,22 @@ export const getCourseOptions = () => {
   return [
     { value: "", label: "Select a course..." },
     { value: "Fun Diving", label: "Fun Diving", disabled: true },
-    ...funDivingData.map(course => ({ value: course.title, label: course.title })),
+    ...funDivingData.map(course => ({ 
+      value: course.title, 
+      label: course.title,
+      price: `${course.price} ${course.priceLabel}`
+    })),
     { value: "PADI Courses", label: "PADI Courses", disabled: true },
-    ...padiCoursesData.map(course => ({ value: course.title, label: course.title })),
+    ...padiCoursesData.map(course => ({ 
+      value: course.title, 
+      label: course.title,
+      price: course.price
+    })),
     { value: "Specialty Courses", label: "Specialty Courses", disabled: true },
-    ...padiSpecialtyCoursesData.map(course => ({ value: course.title, label: course.title }))
+    ...padiSpecialtyCoursesData.map(course => ({ 
+      value: course.title, 
+      label: course.title,
+      price: course.price
+    }))
   ];
 }; 

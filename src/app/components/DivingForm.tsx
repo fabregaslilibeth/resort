@@ -1,30 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { getCourseOptions } from "../../data/divingCourses";
 
 interface DivingFormProps {
   title?: string;
-  subtitle?: string;
   className?: string;
   showContactInfo?: boolean;
+  course?: string;
+  subtitle?: string;
+  description?: string;
 }
 
 export default function DivingForm({
   title = "Book Your Dive",
-  subtitle = "Contact our diving team to book your adventure or learn more about our services. We're here to make your diving dreams come true.",
   className = "",
   showContactInfo = true,
+  course,
+  subtitle = "Ready to Dive?",
+  description = "Contact our diving team to book your adventure or learn more about our services. We're here to make your diving dreams come true.",
 }: DivingFormProps) {
+  const [selectedCourse, setSelectedCourse] = useState(course || "");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <div className={`grid lg:grid-cols-2 gap-16 ${className}`}>
       {showContactInfo && (
         <div>
           <h2 className="text-3xl text-gray-900 mb-6 uppercase">
-            Ready to Dive?
+            {subtitle}
           </h2>
           <p className="text-gray-600 mb-8">
-            Contact our diving team to book your adventure or learn more about
-            our services. We&apos;re here to make your diving dreams come true.
+           {description}
           </p>
           <div className="space-y-6">
             <div className="flex items-center gap-4">
@@ -81,21 +87,52 @@ export default function DivingForm({
               placeholder="your@email.com"
             />
           </div>
-          <div>
+          <div className="relative">
             <label className="block text-gray-700 font-medium mb-2">
               Course Interest
             </label>
-            <select className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              {getCourseOptions().map((option, index) => (
-                <option
-                  key={index}
-                  value={option.value}
-                  disabled={option.disabled}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-left flex items-center justify-between"
+              >
+                <span className={selectedCourse ? "text-gray-900" : "text-gray-500"}>
+                  {selectedCourse || "Select a course..."}
+                </span>
+                <svg className={`w-5 h-5 text-gray-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {isDropdownOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                  {getCourseOptions().map((option, index) => (
+                    <div key={index}>
+                      {'disabled' in option && option.disabled ? (
+                        <div className="px-4 py-2 text-sm font-semibold text-gray-500 bg-gray-50 border-b border-gray-200">
+                          {option.label}
+                        </div>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedCourse(option.label);
+                            setIsDropdownOpen(false);
+                          }}
+                          className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center justify-between"
+                        >
+                          <span className="text-gray-900">{option.label}</span>
+                          {'price' in option && option.price && (
+                            <span className="text-blue-600 font-medium">{option.price}</span>
+                          )}
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
           <div>
             <label className="block text-gray-700 font-medium mb-2">
