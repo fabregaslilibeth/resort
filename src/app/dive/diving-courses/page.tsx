@@ -1,5 +1,6 @@
 import Breadcrumb from '../../components/Breadcrumb';
 import DivingForm from '../../components/DivingForm';
+import Link from 'next/link';
 import { 
   funDivingData, 
   padiCoursesData, 
@@ -163,7 +164,15 @@ export default function DivingCoursesPage() {
                     </div>
                     <div className="text-right">
                       <div className={`font-semibold ${colorMap[course.badgeColor]?.price || 'text-gray-600'}`}>{course.price}</div>
-                      <div className="text-gray-600 text-sm">{course.duration}</div>
+                      <div className="text-gray-600 text-sm">
+                        {course.duration === "More information" ? (
+                          <Link href="/dive/padi-divemaster-internship/#courses" className="text-primary hover:text-secondary">
+                            {course.duration}
+                          </Link>
+                        ) : (
+                          course.duration
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

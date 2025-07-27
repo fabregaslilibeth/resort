@@ -1,10 +1,8 @@
 "use client";
 
-import BackToTop from "../../components/BackToTop";
 import DivingForm from "../../components/DivingForm";
 
 export default function LLVDiversPage() {
-  
   const features = [
     {
       title: "Experienced Professionals",
@@ -17,12 +15,6 @@ export default function LLVDiversPage() {
         "Training from Discover Scuba Diving to Divemaster",
         "Largest training swimming pool in Sabang",
       ],
-    },
-    {
-      title: "Full 5-Star Experience",
-      description:
-        "We offer the full range of PADI scuba programs and have a great selection of modern professional equipment.",
-      icon: "🏊‍♂️",
     },
     {
       title: "Modern Equipment",
@@ -41,10 +33,10 @@ export default function LLVDiversPage() {
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
       <div className="relative text-white">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
           style={{
-            backgroundImage: `url('https://media.istockphoto.com/id/498283106/photo/underwater-scuba-diver-explore-and-enjoy-coral-reef-sea-life.jpg?s=612x612&w=0&k=20&c=xOj00xaZTpy5-AtKvMvIHHfexz9miSSct_CXb6F9KVA=')`
+            backgroundImage: `url('https://media.istockphoto.com/id/498283106/photo/underwater-scuba-diver-explore-and-enjoy-coral-reef-sea-life.jpg?s=612x612&w=0&k=20&c=xOj00xaZTpy5-AtKvMvIHHfexz9miSSct_CXb6F9KVA=')`,
           }}
         ></div>
         <div className="absolute inset-0 bg-black/60 bg-orange-500/40"></div>
@@ -56,18 +48,18 @@ export default function LLVDiversPage() {
               LLV Divers, our modern diving center at Lalaguna Villas, Sabang.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
+              <button
                 onClick={() => {
-                  const form = document.getElementById('book-dive-form');
+                  const form = document.getElementById("book-dive-form");
                   if (form) {
-                    form.scrollIntoView({ behavior: 'smooth' });
+                    form.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
                 className="bg-primary text-white px-4 py-2 rounded-full font-semibold hover:bg-gray-100 hover:text-primary transition-all duration-300 cursor-pointer"
               >
                 Book Your Dive
               </button>
-              <a 
+              <a
                 href="/dive/diving-courses"
                 className="text-primary bg-white bg-opacity-20 px-4 py-2 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer inline-block text-center"
               >
@@ -78,9 +70,29 @@ export default function LLVDiversPage() {
         </div>
       </div>
 
+      {/* PADI 5 Star Dive Resort Section */}
+      <div className="pt-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl text-gray-900 mb-6 uppercase">
+              Full 5-Star Experience
+            </h2>
+            <div className="max-w-4xl mx-auto text-gray-700 space-y-4">
+              <p>
+                We&apos;re a PADI 5 Star Dive Resort, which means we excel in
+                providing divers with memorable diving experiences by providing
+                outstanding professional service. We also make the whole
+                experience a lot of fun.
+              </p>
+              <p>We offer the full range of PADI scuba programs and have a great selection of modern professional equipment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Introduction Section */}
       <div className="py-20 bg-white max-w-7xl mx-auto px-6 lg:px-8">
-        <div className=" grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="px-40 grid grid-cols-1 md:grid-cols-2 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="rounded-3xl p-2 shadow-lg">
               <div className="text-center">
@@ -88,7 +100,6 @@ export default function LLVDiversPage() {
                 <h3 className="text-lg text-gray-900 uppercase">
                   {feature?.title}
                 </h3>
-                <p className="text-gray-600">{feature?.description}</p>
                 <ul className="text-gray-600 space-y-3 text-sm p-4">
                   {feature?.list?.map((item, index) => (
                     <li
@@ -106,16 +117,16 @@ export default function LLVDiversPage() {
         </div>
       </div>
 
-    <div className="max-w-7xl mx-auto px-6 lg:px-8">
-      <iframe
-        width="100%"
-        height="600px"
-        src="https://www.youtube.com/embed/MIpXCktcdpI?si=sB0PKvDJTAoxLlDq&autoplay=1&rel=0&modestbranding=1&mute=1"
-        title="YouTube video player"
-        rel="noreferrer"
-        allow="autoplay; encrypted-media" 
-      ></iframe>
-    </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <iframe
+          width="100%"
+          height="600px"
+          src="https://www.youtube.com/embed/MIpXCktcdpI?si=sB0PKvDJTAoxLlDq&autoplay=1&rel=0&modestbranding=1&mute=1"
+          title="YouTube video player"
+          rel="noreferrer"
+          allow="autoplay; encrypted-media"
+        ></iframe>
+      </div>
 
       {/* Image Slider Section */}
       <div className="py-20 bg-white">
@@ -139,6 +150,39 @@ export default function LLVDiversPage() {
         </div>
       </div>
 
+      {/* Diving at LLV Divers Section */}
+      <div className="relative py-20">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+          style={{
+            backgroundImage: `url('https://lalagunavillas.com/wp-content/uploads/2020/03/Lalaguna-Villas-Diving.jpg')`
+          }}
+        ></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/100 via-white/50 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="w-full md:w-1/2 text-left">
+            <h2 className="text-3xl text-gray-900 mb-6 uppercase">
+              DIVING AT LLV DIVERS
+            </h2>
+            <p className="text-gray-900 mb-8 text-lg">
+              Recreational diving and PADI certification courses for all levels.
+            </p>
+            <div className="space-y-6 text-gray-900">
+              <p>
+                Our team can introduce you to the world of diving with a brief
+                dive in our pool, or you can pursue more advanced and specialty
+                courses.
+              </p>
+              <p>
+                With our fun professional diving team, and some of the
+                world&apos;s best diving nearby, you&apos;re in for a memorable
+                experience.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Contact Section */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -147,9 +191,6 @@ export default function LLVDiversPage() {
           </div>
         </div>
       </div>
-
-      {/* Back to Top Button */}
-      <BackToTop />
     </div>
   );
 }
