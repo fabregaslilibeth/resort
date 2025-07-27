@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { diveSitesData } from '@/data/diveSites';
+import DivingForm from '@/app/components/DivingForm';
 
 const categories = [
   { id: 'all', name: 'All Sites', icon: '🌊' },
@@ -414,28 +415,12 @@ export default function DiveSitesPage() {
         </div>
       </div>
 
-      {/* Booking Section */}
-      <div className="bg-gradient-to-br from-blue-900 to-cyan-800 text-white py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-6">Ready to Dive?</h2>
-            <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Book your diving adventure with our experienced team and explore the underwater wonders of Puerto Galera
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-900 px-8 py-4 rounded-2xl font-semibold hover:bg-blue-50 transition-colors duration-300">
-                Book a Dive Trip
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white hover:text-blue-900 transition-colors duration-300">
-                Contact Our Team
-              </button>
-            </div>
-          </motion.div>
+      {/* Contact Section */}
+      <div className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div id="book-dive-form">
+            <DivingForm title="Book Your Dive" />
+          </div>
         </div>
       </div>
 
@@ -509,17 +494,7 @@ export default function DiveSitesPage() {
                 </div>
               </div>
               
-              <div className="flex gap-4">
-                <button className="flex-1 bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors duration-300">
-                  Book This Site
-                </button>
-                <button 
-                  onClick={() => setSelectedSite(null)}
-                  className="flex-1 border border-gray-300 text-gray-700 py-3 rounded-xl hover:bg-gray-50 transition-colors duration-300"
-                >
-                  Close
-                </button>
-              </div>
+             
             </div>
           </motion.div>
         </div>

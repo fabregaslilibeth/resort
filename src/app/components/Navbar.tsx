@@ -209,8 +209,8 @@ export function Navbar({ isScrolling }: NavbarProps) {
             
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <button className="bg-primary text-white px-8 py-3 rounded-2xl hover:bg-secondary transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl font-medium">
-                BOOK NOW
+              <button className="bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
+                Book Now
               </button>
             </div>
 
