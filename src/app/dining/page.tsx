@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Breadcrumb from "../components/Breadcrumb";
 import { ScrollTrigger } from "../components/ScrollTrigger";
+import BackToTop from "../components/BackToTop";
 import { menuItem } from "../../data/menu";
 import { menuCategories } from "../../data/menuCategories";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 export default function RestaurantPage() {
   // Get featured categories from menuCategories
@@ -28,22 +30,6 @@ export default function RestaurantPage() {
   // Create refs for smooth scrolling
   const categoryRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
   const reservationFormRef = useRef<HTMLDivElement | null>(null);
-
-  // Back to top functionality
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   const scrollToCategory = (category: string) => {
     const element = categoryRefs.current[category];
@@ -111,12 +97,12 @@ export default function RestaurantPage() {
                 >
                   Make Reservation
                 </button>
-                <a
+                <Link
                   href="/dining/menu"
                   className="border border-blue-600 text-blue-600 px-8 py-3 rounded-2xl hover:bg-blue-50 transition-all duration-300 font-semibold inline-block"
                 >
                   View Full Menu
-                </a>
+                </Link>
               </motion.div>
             </div>
           </ScrollTrigger>
@@ -504,30 +490,7 @@ export default function RestaurantPage() {
       </section>
 
       {/* Back to Top Button */}
-      {showBackToTop && (
-        <motion.button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 10l7-7m0 0l7 7m-7-7v18"
-            />
-          </svg>
-        </motion.button>
-      )}
+      <BackToTop />
     </div>
   );
 }

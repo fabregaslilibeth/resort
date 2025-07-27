@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Breadcrumb from '../../../components/Breadcrumb';
 import { ScrollTrigger } from '../../../components/ScrollTrigger';
+import BackToTop from '../../../components/BackToTop';
 import { menuItem } from '../../../../data/menu';
 import { notFound } from 'next/navigation';
 
@@ -30,44 +31,6 @@ export default function MenuCategoryPage({ params }: PageProps) {
 
   // Split items: first 3 as cards, rest as list
   const featuredItems = categoryItems.slice(0, 3);
-
-  const getCategoryIcon = (categoryName: string) => {
-    const icons: { [key: string]: string } = {
-      'Breakfast': '🍳',
-      'Lunch': '🥗',
-      'Dinner': '🍽️',
-      'Snacks': '🍟',
-      'Cocktails': '🍹',
-      'Wine List': '🍷',
-      'Local Beers': '🍺',
-      'Coffee': '☕',
-      'Tea': '🫖',
-      'Desserts': '🍰',
-      'Starters & Pica Pica': '🥨',
-      'Salads': '🥬',
-      'Burgers & Sandwiches': '🍔',
-      'Pasta': '🍝',
-      'Mains': '🥩',
-      'Curry': '🍛',
-      'From the Grill': '🔥',
-      'Filipino': '🇵🇭',
-      'Pizza 12"': '🍕',
-      'Chinese Hot Pot': '🍲',
-      'Vegetarian': '🥬',
-      'Vegan': '🌱',
-      'White Wine': '🍷',
-      'Red Wine': '🍷',
-      'Owners Cellar - White Wine': '🍷',
-      'Owners Cellar - Red Wine': '🍷',
-      'Espresso With a Shot': '☕',
-      'Iced & Frappuccino': '🥤',
-      'Canned Juice': '🥫',
-      'Freshly Squeezed Juice': '🍊',
-      'Smoothies': '🥤',
-      'Shakes': '🥤',
-    };
-    return icons[categoryName] || '🍽️';
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -106,31 +69,24 @@ export default function MenuCategoryPage({ params }: PageProps) {
                   whileHover={{ y: -5 }}
                 >
                   <div className="h-48 overflow-hidden">
-                    {item.image ? (
+                    {item.image && (
                       <img 
                         src={item.image} 
                         alt={item.title}
                         className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                       />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                        <span className="text-4xl">{getCategoryIcon(category)}</span>
-                      </div>
                     )}
                   </div>
                   <div className="p-4">
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="text-lg font-semibold text-gray-900">{item.title}</h4>
+                      <h4 className="text-gray-900 uppercase">{item.title}</h4>
                       {item.price !== undefined && (
-                        <span className="text-blue-600 font-semibold text-lg">
+                        <span className="text-gray-600">
                           {item.price === 0 ? 'POA' : item.price.toLocaleString()}
                         </span>
                       )}
                     </div>
                     <p className="text-sm text-gray-600 line-clamp-2 mb-2">{item.content}</p>
-                    {item.code && (
-                      <span className="text-xs text-gray-500 font-mono">{item.code}</span>
-                    )}
                   </div>
                 </motion.div>
               ))}
@@ -165,18 +121,18 @@ export default function MenuCategoryPage({ params }: PageProps) {
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-semibold text-gray-900">{item.title}</h3>
+                      <h3 className="text-gray-900 uppercase">{item?.title}</h3>
                       {item.code && (
                         <span className="text-xs text-gray-500 font-mono bg-gray-100 px-2 py-1 rounded">
                           {item.code}
                         </span>
                       )}
                     </div>
-                    <p className="text-gray-600 leading-relaxed">{item.content}</p>
+                    <p className="text-gray-600">{item.content}</p>
                   </div>
                   <div className="text-right min-w-[100px]">
                     {item.price !== undefined && (
-                      <span className="text-lg font-semibold text-blue-600">
+                      <span className="text-gray-600 uppercase">
                         {item.price === 0 ? 'POA' : item.price.toLocaleString()}
                       </span>
                     )}
@@ -188,24 +144,8 @@ export default function MenuCategoryPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Back to Restaurant Button */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-            <motion.a
-              href="/dining/restaurant"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-8 py-3 rounded-2xl hover:bg-blue-700 transition-all duration-300 font-semibold"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to Restaurant
-            </motion.a>
-          </ScrollTrigger>
-        </div>
-      </section>
+      {/* Back to Top Button */}
+      <BackToTop />
     </div>
   );
 } 
