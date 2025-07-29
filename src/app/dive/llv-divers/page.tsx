@@ -6,6 +6,7 @@ export default function LLVDiversPage() {
   const features = [
     {
       title: "Experienced Professionals",
+      image: "https://lalagunavillas.com/wp-content/uploads/2021/09/4.1.jpg",
       icon: "👨‍🏫",
       list: [
         "Guided by our team of experienced Divemasters",
@@ -18,6 +19,7 @@ export default function LLVDiversPage() {
     },
     {
       title: "Modern Equipment",
+      image: "https://lalagunavillas.com/wp-content/uploads/2020/05/PADI-at-LLV-Divers-Puerto-Galera-1.jpg",
       icon: "🤿",
       list: [
         "New state of the art beachfront dive center",
@@ -92,25 +94,34 @@ export default function LLVDiversPage() {
 
       {/* Introduction Section */}
       <div className="py-20 bg-white max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="px-40 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-16">
           {features.map((feature, index) => (
-            <div key={index} className="rounded-3xl p-2 shadow-lg">
-              <div className="text-center">
-                <div className="text-6xl mb-4">{feature?.icon}</div>
-                <h3 className="text-lg text-gray-900 uppercase">
+            <div key={index} className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-12`}>
+              {/* Text Content */}
+              <div className="flex-1 text-center lg:text-left">
+                <h3 className="text-2xl text-gray-900 uppercase mb-6">
                   {feature?.title}
                 </h3>
-                <ul className="text-gray-600 space-y-3 text-sm p-4">
-                  {feature?.list?.map((item, index) => (
+                <ul className="text-gray-600 space-y-3 text-base">
+                  {feature?.list?.map((item, itemIndex) => (
                     <li
-                      key={index}
-                      className="flex items-center text-left gap-3"
+                      key={itemIndex}
+                      className="flex items-center gap-3"
                     >
-                      <span className="text-green-500">✓</span>
+                      <span className="text-green-500 text-lg">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
+              </div>
+              
+              {/* Image */}
+              <div className="flex-1">
+                <img 
+                  src={feature?.image} 
+                  alt={feature?.title}
+                  className="w-full h-80 object-cover rounded-2xl shadow-lg"
+                />
               </div>
             </div>
           ))}

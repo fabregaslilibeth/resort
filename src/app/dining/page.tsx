@@ -7,15 +7,7 @@ import { ScrollTrigger } from "../components/ScrollTrigger";
 import { menuItem } from "../../data/menu";
 import { menuCategories } from "../../data/menuCategories";
 import { useRef } from "react";
-
-// Helper function to convert category name to URL slug
-function categoryToSlug(categoryName: string): string {
-  return categoryName
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, "-");
-}
+import { categoryToSlug } from "./menu/utils";
 
 export default function RestaurantPage() {
   // Get featured categories from menuCategories

@@ -41,7 +41,7 @@ export default function DiveSitesPage() {
   };
 
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-orange-50 to-amber-50">
+    <div className="bg-gradient-to-br from-orange-50 to-amber-50">
       {/* Hero Section */}
       <div className="relative text-white overflow-hidden">
         <div 
@@ -290,7 +290,7 @@ export default function DiveSitesPage() {
       </div>
 
        {/* Featured Day Trips Section */}
-       <div className="bg-gradient-to-br from-orange-100 via-white to-amber-300 py-20">
+       <div className="bg-gradient-to-br from-orange-100 via-white to-amber-100 py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -301,7 +301,7 @@ export default function DiveSitesPage() {
             <h2 className="text-2xl mb-6">
               VERDE ISLAND - DIVING DAY TRIPS
             </h2>
-            <p className="text-orange-100 max-w-4xl mx-auto">
+            <p className="text-gray-600max-w-4xl mx-auto">
               Experience world-class diving just minutes from our beachfront resort
             </p>
           </motion.div>

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Breadcrumb from "../../../components/Breadcrumb";
 import { ScrollTrigger } from "../../../components/ScrollTrigger";
-import { categoryToSlug } from "./page";
+import { categoryToSlug } from "../utils";
 
 interface MenuItem {
   id: string;
