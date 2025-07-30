@@ -75,17 +75,30 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
   return (
     <section
         id="home" 
-        className="relative w-full min-h-[90vh] flex items-center justify-center" 
-        style={{ 
-            backgroundImage: 'url(https://lalagunavillas.com/wp-content/uploads/2021/04/Lalaguna-Villas-Terrace.jpg)',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover'
-          }}
+        className="relative w-full min-h-[90vh] flex items-center justify-center"
         >
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center'
+        }}
+      >
+        <source src="https://lalagunavillas.com/wp-content/uploads/2025/07/Lalaguna-Villas-Luxury-Dive-Resort-SPA-2024.mov" type="video/quicktime" />
+        <source src="https://lalagunavillas.com/wp-content/uploads/2025/07/Lalaguna-Villas-Luxury-Dive-Resort-SPA-2024.mov" type="video/mp4" />
+      </video>
+      
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/30 z-0"></div>
 
       {/* Hero Content - Right Aligned */}
-      <ScrollTrigger animationType="slide-bottom" threshold={0.3} className="relative w-full">
+      {/* <ScrollTrigger animationType="slide-bottom" threshold={0.3} className="relative w-full">
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-end">
             <AnimatePresence>
@@ -96,7 +109,6 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  {/* First text - "Dive into luxury at" */}
                   <div className="mb-2">
                     <WaveText 
                       text="Dive into luxury at"
@@ -106,7 +118,6 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
                     />
                   </div>
 
-                  {/* Second text - "Lalaguna Villas" */}
                   <div className="mb-2">
                     <WaveText 
                       text="Lalaguna Villas"
@@ -116,7 +127,6 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
                     />
                   </div>
 
-                  {/* Third text - "A Luxury Resort & Spa" */}
                   <div className="mb-2">
                     <WaveText 
                       text="A Luxury Resort & Spa"
@@ -130,7 +140,7 @@ export function HeroSection({ isLoaded }: HeroSectionProps) {
             </AnimatePresence>
           </div>
         </div>
-      </ScrollTrigger>
+      </ScrollTrigger> */}
 
       {/* Booking Form - Bottom Half with Dissolve Effect */}
       <AnimatePresence>

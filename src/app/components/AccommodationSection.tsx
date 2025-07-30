@@ -210,7 +210,7 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
 
                         {/* View Details Link */}
                         <div className="pt-2">
-                          <span className="text-blue-600 hover:text-blue-700 font-semibold text-sm">
+                          <span className="text-primary hover:text-secondary cursor-pointer font-semibold text-sm">
                             View Details →
                           </span>
                         </div>
@@ -224,7 +224,7 @@ export function AccommodationSection({ isLoaded }: AccommodationSectionProps) {
         </div>
       <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
         <div className="text-center pt-12">
-          <Link href="/rooms" className="text-blue-500 hover:text-blue-600">
+          <Link href="/rooms" className="text-primary hover:text-secondary cursor-pointer font-semibold ">
             View all rooms →
           </Link>
         </div>
