@@ -1,14 +1,15 @@
 'use client';
 
-import { ScrollTrigger } from './ScrollTrigger';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { offersData, OfferSection } from '@/data/offers';
 import { useState } from 'react';
+import { useScrollTrigger } from '../hooks/useSmoothScroll';
 
 export function OffersSection() {
   const [selectedOffer, setSelectedOffer] = useState<OfferSection | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { elementRef, isVisible } = useScrollTrigger(0.2);
 
   const handleOfferClick = (offer: OfferSection) => {
     setSelectedOffer(offer);
@@ -21,9 +22,8 @@ export function OffersSection() {
   };
 
   return (
-    <section className="py-16 px-4 bg-white pt-32 font-montserrat">
+    <section className="py-16 px-4 bg-white pt-32 font-montserrat" ref={elementRef}>
       <div className="max-w-7xl mx-auto">
-        <ScrollTrigger>
           {/* Section Header */}
           <motion.div 
             className="flex justify-between items-center mb-12"
@@ -48,7 +48,21 @@ export function OffersSection() {
           </motion.div>
 
           {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-3 auto-rows-[180px]">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-3 auto-rows-[180px]"
+            initial="hidden"
+            animate={isVisible ? "visible" : "hidden"}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.12,
+                  delayChildren: 0.3
+                }
+              }
+            }}
+          >
             {offersData.slice(0, 10).map((offer, index) => {
               // Define exact card sizes for tight bento grid
               const cardSizes = [
@@ -75,9 +89,27 @@ export function OffersSection() {
                   className={`group cursor-pointer relative overflow-hidden rounded-lg shadow-md ${
                     isLarge ? 'md:col-span-4 lg:col-span-4' : 'md:col-span-2 lg:col-span-2'
                   } ${size.rows > 1 ? 'row-span-2' : 'row-span-1'}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
+                  variants={{
+                    hidden: { 
+                      opacity: 0, 
+                      y: 30,
+                      scale: 0.9,
+                      rotateX: -15
+                    },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0,
+                      scale: 1,
+                      rotateX: 0
+                    }
+                  }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15
+                  }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleOfferClick(offer)}
@@ -119,8 +151,7 @@ export function OffersSection() {
                 </motion.div>
               );
             })}
-          </div>
-        </ScrollTrigger>
+          </motion.div>
 
         {/* Modal Overlay */}
         <AnimatePresence>
