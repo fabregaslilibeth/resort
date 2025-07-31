@@ -1,6 +1,6 @@
 'use client';
 
-import { ScrollTrigger } from './ScrollTrigger';
+// import { ScrollTrigger } from './ScrollTrigger';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,39 +9,39 @@ interface HeroSectionProps {
 }
 
 // Component for wave text animation
-function WaveText({ text, className, delay = 0, staggerDelay = 0.05 }: { 
-  text: string; 
-  className: string; 
-  delay?: number;
-  staggerDelay?: number;
-}) {
-  return (
-    <div className="overflow-hidden">
-      <motion.div 
-        className={className}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay }}
-      >
-        {text.split('').map((char, index) => (
-          <motion.span
-            key={index}
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{
-              duration: 0.3,
-              delay: delay + (index * staggerDelay),
-              ease: "easeOut"
-            }}
-            className="inline-block"
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
-        ))}
-      </motion.div>
-    </div>
-  );
-}
+// function WaveText({ text, className, delay = 0, staggerDelay = 0.05 }: { 
+//   text: string; 
+//   className: string; 
+//   delay?: number;
+//   staggerDelay?: number;
+// }) {
+//   return (
+//     <div className="overflow-hidden">
+//       <motion.div 
+//         className={className}
+//         initial={{ opacity: 0 }}
+//         animate={{ opacity: 1 }}
+//         transition={{ duration: 0.5, delay }}
+//       >
+//         {text.split('').map((char, index) => (
+//           <motion.span
+//             key={index}
+//             initial={{ y: 50, opacity: 0 }}
+//             animate={{ y: 0, opacity: 1 }}
+//             transition={{
+//               duration: 0.3,
+//               delay: delay + (index * staggerDelay),
+//               ease: "easeOut"
+//             }}
+//             className="inline-block"
+//           >
+//             {char === ' ' ? '\u00A0' : char}
+//           </motion.span>
+//         ))}
+//       </motion.div>
+//     </div>
+//   );
+// }
 
 export function HeroSection({ isLoaded }: HeroSectionProps) {
   const [bookingData, setBookingData] = useState({
