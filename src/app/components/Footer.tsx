@@ -15,7 +15,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-blue-900 text-white">
+    <footer className="bg-[#2C2C2C] text-white">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
@@ -135,7 +135,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="bg-blue-800 py-4">
+      <div className="bg-orange-600 py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-white">
             © 2025 Lalaguna Villas - Luxury Dive Resort & Spa. All Rights Reserved.
