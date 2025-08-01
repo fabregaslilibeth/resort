@@ -17,7 +17,9 @@ export default function Home() {
 
   return (
     <div className="">
-      <HeroSection isLoaded={isLoaded} />
+      <div className="mb-40 md:mb-0">
+        <HeroSection isLoaded={isLoaded} />
+      </div>
       <OffersSection />
       <AwardsSection isLoaded={isLoaded} />
       <AccommodationSection isLoaded={isLoaded} />
