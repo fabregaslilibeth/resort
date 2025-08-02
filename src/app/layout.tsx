@@ -27,6 +27,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "Lalaguna Villas",
   description: "Lalaguna Villas, a Luxury Dive Resort & Spa",
+  icons: {
+    icon: 'https://lalagunavillas.com/wp-content/uploads/2021/12/cropped-favicon-192x192.png',
+  },
 };
 
 export default function RootLayout({
