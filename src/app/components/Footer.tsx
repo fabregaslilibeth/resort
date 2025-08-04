@@ -38,34 +38,41 @@ export function Footer() {
           {/* CONTACT US Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-1 h-8 bg-gradient-to-b from-orange-400 to-orange-500 rounded-full mr-3"></div>
-              <h3 className="text-orange-400 font-bold text-xl tracking-wide">CONTACT US</h3>
+              <h3 className="text-orange-400">CONTACT US</h3>
             </div>
             
             <div className="space-y-6">
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6">
                 <div className="text-sm space-y-3">
-                  <div className="font-semibold text-orange-300 text-base">Lalaguna Villas Luxury Dive Resort & Spa</div>
-                  <div className="text-gray-300 space-y-1">
-                    <p>Lalaguna Holdings Inc.</p>
-                    <p>Small Lalaguna Beach</p>
-                    <p>Sabang, Puerto Galera</p>
-                    <p>Oriental Mindoro 5203</p>
-                    <p>Philippines</p>
+                  <div className="text-orange-300 uppercase">Lalaguna Villas Luxury Dive Resort & Spa</div>
+                  <div>
+                    <div className="flex mb-2">
+                      <svg className="w-4 h-4 text-orange-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+                      </svg>
+                      <div className="text-gray-300 text-xs space-y-1 ml-1">
+                      <p>Lalaguna Holdings Inc.</p>
+                      <p>Small Lalaguna Beach</p>
+                      <p>Sabang, Puerto Galera</p>
+                      <p>Oriental Mindoro 5203</p>
+                      <p>Philippines</p>
+                    </div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6">
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center mb-2">
                       <svg className="w-4 h-4 text-orange-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
                       </svg>
-                      <span className="font-semibold text-orange-300">Phone</span>
+                      <span className="text-orange-300 uppercase">Phone</span>
                     </div>
-                    <div className="text-gray-300 text-sm space-y-1 ml-6">
+                    <div className="text-gray-300 text-xs space-y-1 ml-6">
                       <p>+63 917 570 3415</p>
                       <p>+63 998 541 1557</p>
                     </div>
@@ -77,9 +84,9 @@ export function Footer() {
                         <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                         <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                       </svg>
-                      <span className="font-semibold text-orange-300">Email</span>
+                      <span className="text-orange-300 uppercase">Email</span>
                     </div>
-                    <div className="text-gray-300 text-sm space-y-1 ml-6">
+                    <div className="text-gray-300 text-xs space-y-1 ml-6">
                       <p>info@lalagunavillas.com.ph</p>
                       <p>llvdivers@lalagunavillas.com.ph</p>
                       <p>gopro@lalagunavillas.com.ph</p>
@@ -93,11 +100,10 @@ export function Footer() {
           {/* Payment Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-1 h-8 bg-gradient-to-b from-orange-400 to-orange-500 rounded-full mr-3"></div>
-              <h3 className="text-orange-400 font-bold text-xl tracking-wide">WE ACCEPT</h3>
+              <h3 className="text-orange-400">WE ACCEPT</h3>
             </div>
             
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="grid grid-cols-2 gap-4">
                 {paymentOptions.map((option, index) => (
                   <div 
@@ -131,11 +137,10 @@ export function Footer() {
           {/* ACCOLADES Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-1 h-8 bg-gradient-to-b from-orange-400 to-orange-500 rounded-full mr-3"></div>
-              <h3 className="text-orange-400 font-bold text-xl tracking-wide">ACCOLADES</h3>
+              <h3 className="text-orange-400">ACCOLADES</h3>
             </div>
             
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6">
               <div className="space-y-4">
                 {/* TripAdvisor Awards */}
                 <div>
@@ -198,18 +203,17 @@ export function Footer() {
           {/* SUBSCRIBE Section */}
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
-              <div className="w-1 h-8 bg-gradient-to-b from-orange-400 to-orange-500 rounded-full mr-3"></div>
-              <h3 className="text-orange-400 font-bold text-xl tracking-wide">SUBSCRIBE</h3>
+              <h3 className="text-orange-400">SUBSCRIBE</h3>
             </div>
             
-            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl p-6">
               {/* Logo */}
-              <div className="text-center mb-6">
-                <div className="text-orange-300 font-bold text-lg">LALAGUNA Villas</div>
+              <div className="mb-6">
+                <div className="text-orange-300 uppercase">LALAGUNA Villas</div>
                 <div className="text-gray-300 text-sm">Luxury Dive Resort & Spa</div>
               </div>
               
-              <p className="text-gray-300 text-sm mb-6 text-center">Stay updated with our latest offers and news</p>
+              <p className="text-gray-300 text-sm mb-6">Stay updated with our latest offers and news</p>
               
               <form onSubmit={handleSubscribe} className="space-y-4">
                 <div className="relative">
@@ -218,7 +222,7 @@ export function Footer() {
                     placeholder="Your Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 hover:bg-white/20"
                     required
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -234,7 +238,7 @@ export function Footer() {
                     placeholder="Email Address"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-2 bg-white/15 backdrop-blur-sm border border-white/25 rounded-full text-white placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-300 hover:bg-white/20"
                     required
                   />
                   <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
@@ -247,7 +251,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white py-3 px-6 rounded-lg font-semibold text-sm hover:from-orange-600 hover:to-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  className="w-full bg-primary text-xs text-white py-2 px-2 rounded-full hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none cursor-pointer"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center">
@@ -268,7 +272,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="relative bg-gradient-to-r from-orange-500 to-orange-600 py-6">
+      <div className="relative bg-[#101929] py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <p className="text-sm text-white/90 text-center lg:text-left">
