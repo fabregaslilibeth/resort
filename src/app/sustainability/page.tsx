@@ -86,7 +86,7 @@ export default function Sustainability() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section */}
       <motion.section
         className="relative h-[50vh] flex items-center justify-center overflow-hidden"
@@ -152,7 +152,7 @@ export default function Sustainability() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -161,17 +161,17 @@ export default function Sustainability() {
             {sustainabilityFeatures.map((feature, index) => (
               <motion.div
                 key={feature.title}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100"
+                className="bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl text-gray-900 mb-4 uppercase">
+                <div className="text-3xl md:text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-lg md:text-xl text-gray-900 mb-4 uppercase break-words">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
+                <p className="text-gray-600 leading-relaxed text-sm break-words">
                   {feature.description}
                 </p>
               </motion.div>
@@ -205,13 +205,13 @@ export default function Sustainability() {
           </motion.div>
 
           <motion.div
-            className="relative"
+            className="relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative w-full max-w-4xl mx-auto">
+            <div className="relative w-full max-w-4xl mx-auto px-4">
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
                 <iframe
                   src="https://www.youtube.com/embed/v63kzJRmDF8?feature=oembed"
@@ -223,10 +223,10 @@ export default function Sustainability() {
                 ></iframe>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -left-4 w-8 h-8 bg-orange-400 rounded-full opacity-20"></div>
-              <div className="absolute -bottom-4 -right-4 w-6 h-6 bg-green-400 rounded-full opacity-20"></div>
-              <div className="absolute top-1/2 -left-8 w-4 h-4 bg-blue-400 rounded-full opacity-30"></div>
-              <div className="absolute top-1/3 -right-6 w-3 h-3 bg-amber-400 rounded-full opacity-25"></div>
+              <div className="absolute top-2 left-2 w-6 h-6 bg-orange-400 rounded-full opacity-20"></div>
+              <div className="absolute bottom-2 right-2 w-4 h-4 bg-green-400 rounded-full opacity-20"></div>
+              <div className="absolute top-1/2 left-2 w-3 h-3 bg-blue-400 rounded-full opacity-30"></div>
+              <div className="absolute top-1/3 right-2 w-2 h-2 bg-amber-400 rounded-full opacity-25"></div>
             </div>
           </motion.div>
         </div>
@@ -250,7 +250,7 @@ export default function Sustainability() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -270,10 +270,10 @@ export default function Sustainability() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-4xl md:text-5xl font-bold mb-2">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
                   {stat.number}
                 </div>
-                <div className="text-white">{stat.label}</div>
+                <div className="text-white text-sm md:text-base break-words">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -301,16 +301,16 @@ export default function Sustainability() {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <div className="flex-1">
-                  <h3 className="text-2xl font-normal text-gray-900 mb-4 uppercase">
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-xl lg:text-2xl font-normal text-gray-900 mb-4 uppercase break-words">
                     {initiative.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-gray-600 leading-relaxed text-sm lg:text-base break-words">
                     {initiative.content}
                   </p>
                 </div>
-                <div className="flex-1">
-                  <div className="aspect-video bg-gradient-to-r from-orange-200 via-amber-600 to-amber-500 rounded-2xl shadow-lg">
+                <div className="flex-1 min-w-0">
+                  <div className="aspect-video bg-gradient-to-r from-orange-200 via-amber-600 to-amber-500 rounded-2xl shadow-lg overflow-hidden">
                     <img
                       src={initiative.image}
                       alt={initiative.title}
@@ -333,32 +333,32 @@ export default function Sustainability() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-normal text-gray-900 mb-6 uppercase">
+            <h2 className="text-2xl md:text-3xl font-normal text-gray-900 mb-6 uppercase">
               A CONTINUOUS PROCESS
             </h2>
-            <p className="pt-3">
+            <p className="pt-3 break-words">
               While many lifestyle brands have adopted sustainability for
               marketing reasons, at Lalaguna Villas, being eco-conscious was
-              never part of a marketing strategy, it’s been part of our DNA from
+              never part of a marketing strategy, it's been part of our DNA from
               the start.
             </p>
-            <p className="pt-3">
+            <p className="pt-3 break-words">
               The reason we built our resort in such an idyllic beachfront
               location in Puerto Galera, surrounded by pristine waters and the
-              world’s best diving, is that we truly value what nature put here.
+              world's best diving, is that we truly value what nature put here.
               Why would we not want to preserve that for ourselves and for
               everyone that visits this remarkable area?
             </p>
-            <p className="pt-3">
-              So while we’re grateful to be recognized for our eco-conscious
-              endeavors and investment, it’s something we feel strongly about
+            <p className="pt-3 break-words">
+              So while we're grateful to be recognized for our eco-conscious
+              endeavors and investment, it's something we feel strongly about
               doing anyway and will continue to push to lead the way in our
               region.
             </p>
-            <p className="pt-3">
+            <p className="pt-3 break-words">
               We know that many of our guests also feel strongly about being
               eco-conscious, as many of you are avid divers that value the
-              natural ecosystem in this region. We’re proud of our initiatives
+              natural ecosystem in this region. We're proud of our initiatives
               to conserve our natural resources and are happy to give interested
               guests a tour of our facilities.
             </p>
