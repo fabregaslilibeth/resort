@@ -339,26 +339,26 @@ export default function Sustainability() {
             <p className="pt-3 break-words">
               While many lifestyle brands have adopted sustainability for
               marketing reasons, at Lalaguna Villas, being eco-conscious was
-              never part of a marketing strategy, it's been part of our DNA from
+              never part of a marketing strategy, it&apos;s been part of our DNA from
               the start.
             </p>
             <p className="pt-3 break-words">
               The reason we built our resort in such an idyllic beachfront
               location in Puerto Galera, surrounded by pristine waters and the
-              world's best diving, is that we truly value what nature put here.
+              world&apos;s best diving, is that we truly value what nature put here.
               Why would we not want to preserve that for ourselves and for
               everyone that visits this remarkable area?
             </p>
             <p className="pt-3 break-words">
-              So while we're grateful to be recognized for our eco-conscious
-              endeavors and investment, it's something we feel strongly about
+              So while we&apos;re grateful to be recognized for our eco-conscious
+              endeavors and investment, it&apos;s something we feel strongly about
               doing anyway and will continue to push to lead the way in our
               region.
             </p>
             <p className="pt-3 break-words">
               We know that many of our guests also feel strongly about being
               eco-conscious, as many of you are avid divers that value the
-              natural ecosystem in this region. We're proud of our initiatives
+              natural ecosystem in this region. We&apos;re proud of our initiatives
               to conserve our natural resources and are happy to give interested
               guests a tour of our facilities.
             </p>

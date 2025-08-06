@@ -33,15 +33,13 @@ const itemVariants = {
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.5,
-      ease: "easeOut"
+      duration: 0.5
     }
   },
   hover: {
     scale: 1.05,
     transition: {
-      duration: 0.3,
-      ease: "easeInOut"
+      duration: 0.3
     }
   }
 };
@@ -52,8 +50,7 @@ const filterVariants = {
     opacity: 1, 
     y: 0,
     transition: {
-      duration: 0.4,
-      ease: "easeOut"
+      duration: 0.4
     }
   }
 };
