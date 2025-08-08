@@ -108,7 +108,7 @@ export default function ActivitiesPage() {
         {/* Header */}
         <motion.div className="text-center mb-16" variants={fadeInUp}>
           <h1 className="text-3xl text-gray-900 mb-6 uppercase">
-            Activities & Adventures
+            Activities
           </h1>
           <p className="text-gray-600 max-w-3xl mx-auto">
             From water sports to land adventures, discover exciting activities
