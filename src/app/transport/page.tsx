@@ -1,73 +1,118 @@
+import type { Metadata } from 'next';
+import { site } from '@/data/site';
+import { deskContacts } from '../components/activities/activity-data';
+import { Enquiry } from '../components/sections/Enquiry';
+import { EnquiryForm } from '../components/sections/EnquiryForm';
+import { Ledger } from '../components/sections/Ledger';
+import { Numbered } from '../components/sections/Numbered';
+import { Split } from '../components/sections/Split';
+import { BackToTop } from '../components/site/BackToTop';
+import { TransitionLink } from '../components/site/Curtain';
+import { PageHero } from '../components/site/PageHero';
+import { PageMotion } from '../components/site/PageMotion';
+
+export const metadata: Metadata = {
+  title: 'Transport · Getting to Lalaguna Villas, Puerto Galera',
+  description:
+    'A VIP private transfer from Manila to our door by car and boat, a speedboat water taxi from the ferry ports, and a free Sabang pier transfer when you book direct.',
+};
+
+const JOURNEY = [
+  {
+    title: 'By road from Manila',
+    text: 'On our VIP private transfer, a luxury car meets you in Manila and drives you to the coast: our Hyundai Starex, or a minibus for a larger group.',
+  },
+  {
+    title: 'Across to Puerto Galera',
+    text: 'From the coast, our own craft carries you across to Puerto Galera and straight to our doorstep on Small Lalaguna Beach.',
+  },
+  {
+    title: 'Or by ferry, then speedboat',
+    text: 'Coming on the public ferry? Our speedboat water taxi shuttles between the resort and the ferry ports, and the Sabang pier transfer is free when you book direct.',
+  },
+];
+
+const OPTIONS = [
+  {
+    title: 'VIP private transfer',
+    badge: 'Extra charge',
+    text: 'From Manila directly to our doorstep, in our luxury car and craft.',
+  },
+  {
+    title: 'Private luxury car',
+    badge: 'Extra charge',
+    text: 'A Hyundai Starex, with a driver.',
+  },
+  {
+    title: 'Minibus',
+    badge: 'Extra charge',
+    text: 'For families and groups travelling together.',
+  },
+  {
+    title: 'Speedboat water taxi',
+    badge: 'Extra charge',
+    text: 'A shuttle between the resort and the ferry ports.',
+  },
+  {
+    title: 'Sabang pier transfer',
+    badge: 'Free booking direct',
+    text: 'To and from Sabang pier on check-in and check-out, when you book with us directly.',
+  },
+];
+
 export default function TransportPage() {
   return (
-    <div className="min-h-screen pt-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Transportation Services
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Convenient and comfortable transportation options to enhance your stay with us.
-          </p>
-        </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Seamless Travel Experience
-            </h2>
-            <p className="text-gray-600 mb-6">
-              From airport transfers to local excursions, we provide reliable and comfortable 
-              transportation services to ensure your journey is as enjoyable as your stay.
-            </p>
-            <p className="text-gray-600 mb-6">
-              Our professional drivers and well-maintained vehicles guarantee safe and 
-              punctual service for all your transportation needs.
-            </p>
-            <div className="flex gap-4">
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-2xl hover:bg-blue-700 transition-all duration-300">
-                Book Transfer
-              </button>
-              <button className="border border-blue-600 text-blue-600 px-8 py-3 rounded-2xl hover:bg-blue-50 transition-all duration-300">
-                View Services
-              </button>
-            </div>
-          </div>
-          <div className="bg-gray-200 rounded-2xl h-96 flex items-center justify-center">
-            <p className="text-gray-500">Transport Image Placeholder</p>
-          </div>
-        </div>
-        
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">✈️</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Airport Transfers</h3>
-            <p className="text-gray-600">
-              Reliable pickup and drop-off service to and from the airport with meet-and-greet.
-            </p>
-          </div>
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🚗</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Local Tours</h3>
-            <p className="text-gray-600">
-              Guided tours to local attractions, markets, and cultural sites with experienced drivers.
-            </p>
-          </div>
-          <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🚁</span>
-            </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">Helicopter Service</h3>
-            <p className="text-gray-600">
-              Luxury helicopter transfers for a truly spectacular arrival and departure experience.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      <main id="main">
+        <PageHero
+          eyebrow="(Getting here) Transport"
+          lines={['From Manila', 'to our doorstep.']}
+          lead="Puerto Galera is a drive and a short crossing from Manila. Let us take care of both, or meet you off the ferry."
+          image="/images/home/boat-bow.jpg"
+          alt="The orange bow of the boat cutting through the water"
+        />
+        <Numbered eyebrow="The journey" lines={['Car, boat,', 'then the beach.']} items={JOURNEY} />
+        <Ledger
+          id="options"
+          eyebrow="Transfers"
+          lines={['However you’d', 'like to arrive.']}
+          intro="Tell us your flight or ferry times and we’ll quote and arrange it."
+          rows={OPTIONS}
+        />
+        <Split
+          image="/images/home/speedboat.jpg"
+          alt="A speedboat crossing the bay at Sabang"
+          eyebrow="Book direct"
+          lines={['The pier transfer', 'is on us.']}
+          text={[
+            'Book your stay with us directly and we’ll collect you from Sabang pier when you arrive and take you back when you leave, among the other direct booking benefits.',
+          ]}
+        >
+          <TransitionLink className="text-link" href="/offers">
+            Direct booking benefits
+          </TransitionLink>
+        </Split>
+        <Enquiry
+          eyebrow="Transfers"
+          lines={['Arrange', 'your transfer.']}
+          text="Let us know when you land or which ferry you’re on, and how many of you are travelling."
+          contacts={deskContacts.map((contact, i) => (i === 0 ? { ...contact, label: 'Write to the front desk' } : contact))}
+        >
+          <EnquiryForm
+            id="transfer"
+            to={site.bookingEmail}
+            subject="Transfer request"
+            choice={{ label: 'Transfer', groups: [{ label: 'Transfers', options: OPTIONS.map((option) => option.title) }] }}
+            date="Arrival date"
+            time={{ label: 'Arriving', options: ['Morning', 'Afternoon', 'Evening'] }}
+            guests="Travellers"
+            message="Flight or ferry times, luggage, anything else"
+            submit="Request a transfer"
+          />
+        </Enquiry>
+      </main>
+      <BackToTop />
+      <PageMotion />
+    </>
   );
-} 
+}

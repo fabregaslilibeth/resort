@@ -1,228 +1,136 @@
-'use client';
+import type { Metadata } from 'next';
+import { site } from '@/data/site';
+import { spaData, type SpaCategory } from '@/data/spa';
+import { deskContacts, peso } from '../components/activities/activity-data';
+import { Enquiry } from '../components/sections/Enquiry';
+import { EnquiryForm } from '../components/sections/EnquiryForm';
+import { Ledger, type LedgerRow } from '../components/sections/Ledger';
+import { SectionHead } from '../components/sections/SectionHead';
+import { Statement } from '../components/sections/Statement';
+import { BackToTop } from '../components/site/BackToTop';
+import { PageHero } from '../components/site/PageHero';
+import { PageMotion } from '../components/site/PageMotion';
+import '../styles/activities.css';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { spaData } from '@/data/spa';
-import { ScrollTrigger } from '../components/ScrollTrigger';
+export const metadata: Metadata = {
+  title: 'WellZen Spa · Lalaguna Villas, Puerto Galera',
+  description:
+    'WellZen Spa at Lalaguna Villas: Balinese, deep tissue and couples massage, warm bamboo and aroma stone signatures, scrubs, body masks and foot care, with packages from ₱3,300.',
+};
+
+// Shorter write-ups than the spa menu's for the longer treatments.
+const SHORT: Record<string, string> = {
+  'thai-herbal-poultice': 'Warm pouches of herbs, the rocking rhythm of the therapy and the aroma of the herbs combine for a deeply soothing massage.',
+  'aroma-stone': 'Heated stones relax tight, stiff muscles so the massage can release more tension and ease soreness.',
+  'coffee-apricot-scrub': 'Coffee and apricot exfoliate, lifting dry and dead skin to reveal the healthy-looking skin beneath.',
+  'glutathione-whitening': 'A whitening scrub with glutathione, an antioxidant like vitamins C and E.',
+  'black-mud-mineral': 'A heated Dead Sea mineral mud mask with a warming blend of essential oils, then a comforting wrap while it works.',
+  'whitening-clay-mask': 'A clay mask that boosts circulation, tightens and refines the skin and lifts dead cells; for all skin types.',
+};
+
+const category = (id: string) => spaData.categories.find((c) => c.id === id) as SpaCategory;
+
+/** Massages: one price for an hour, the 90-minute price under it. */
+const timedRows = (id: string): LedgerRow[] =>
+  (category(id).services ?? []).map((service) => ({
+    title: service.name,
+    text: SHORT[service.id] ?? service.description,
+    meta: '60 or 90 minutes',
+    price: peso(service.price60),
+    priceNote: `60 min · ${peso(service.price90)} for 90`,
+  }));
+
+const treatmentRows = (...ids: string[]): LedgerRow[] =>
+  ids.flatMap((id) =>
+    (category(id).treatments ?? []).map((treatment) => ({
+      title: treatment.name,
+      badge: ids.length > 1 ? category(id).title : undefined,
+      text: SHORT[treatment.id] ?? treatment.description,
+      meta: treatment.price ? undefined : 'Price on request',
+      price: treatment.price ? peso(treatment.price) : undefined,
+    })),
+  );
+
+const choiceGroups = [
+  { label: 'Massage', options: (category('massage').services ?? []).map((s) => s.name) },
+  { label: 'Signature treatments', options: (category('signature-treatments').services ?? []).map((s) => s.name) },
+  {
+    label: 'Scrubs & masks',
+    options: [...(category('body-scrub-glow').treatments ?? []), ...(category('body-mask-detox').treatments ?? [])].map((t) => t.name),
+  },
+  { label: 'Foot & nail care', options: (category('foot-nail-care').treatments ?? []).map((t) => t.name) },
+  { label: 'Packages', options: spaData.packages.map((p) => p.name) },
+];
 
 export default function SpaPage() {
-  const [activeCategory, setActiveCategory] = useState('massage');
-
-  const formatPrice = (price: number) => {
-    return `₱${price.toLocaleString()}`;
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-900/20 to-orange-900/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
-                {spaData.hero.title}
-              </h1>
-              <h2 className="text-3xl md:text-5xl font-light text-amber-600 mb-8">
-                {spaData.hero.subtitle}
-              </h2>
-              <p className="text-xl md:text-2xl text-amber-700 mb-4 font-medium">
-                {spaData.hero.tagline}
-              </p>
-              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
-                {spaData.hero.description}
-              </p>
-            </motion.div>
-          </ScrollTrigger>
-        </div>
-      </section>
-
-      {/* Category Navigation */}
-      <section className="py-12 bg-white/80 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            {spaData.categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeCategory === category.id
-                    ? 'bg-amber-600 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-amber-50 hover:text-amber-600 border border-gray-200'
-                }`}
-              >
-                {category.title}
-              </button>
+    <>
+      <main id="main">
+        <PageHero
+          eyebrow="(Activities) WellZen Spa"
+          lines={['Luxury for the mind,', 'body and soul.']}
+          lead="Revitalising therapies to ease away stress and lift your physical and mental wellbeing, from our highly skilled therapists."
+          image="/images/home/pool-villas.jpg"
+          alt="The pool and a sun lounger beneath the villas"
+          water
+        />
+        <Statement
+          eyebrow="WellZen Spa"
+          lines={['The ultimate retreat', 'for your senses.']}
+          text={[
+            'WellZen Spa at Lalaguna Villas is the place to pamper yourself, with a range of luxury treatments such as reflexology, warm bamboo and aroma stone massage, and our exclusive body mask detox.',
+            'Staying a few days? Our therapists can design a personalised treatment programme for you, for the ultimate in pampering throughout your stay.',
+          ]}
+        />
+        <Ledger id="massage" eyebrow="Massage" lines={['Relax.', 'An hour or ninety minutes.']} intro="Prices in Philippine pesos." rows={timedRows('massage')} />
+        <Ledger id="signature" eyebrow="Signature treatments" lines={['Rebalance,', 'with warmth.']} rows={timedRows('signature-treatments')} />
+        <Ledger
+          id="scrubs"
+          eyebrow="Scrubs & masks"
+          lines={['Rejuvenate,', 'detoxify.']}
+          rows={treatmentRows('body-scrub-glow', 'body-mask-detox')}
+        />
+        <Ledger id="nails" eyebrow="Foot & nail care" lines={['Pamper', 'your feet.']} rows={treatmentRows('foot-nail-care')} />
+        <section className="trio" aria-labelledby="packages-title">
+          <SectionHead
+            id="packages-title"
+            eyebrow="Packages"
+            lines={['Three treatments,', 'one booking.']}
+            intro="Some of our favourite treatments, put together."
+          />
+          <ol className="trio__list" data-reveal-group>
+            {spaData.packages.map((pkg) => (
+              <li className="trio__item" key={pkg.id} data-reveal>
+                <h3 className="serif trio__name">{pkg.name.replace('Package ', '')}</h3>
+                <p className="trio__text">{pkg.description}</p>
+                <p className="trio__price">
+                  <span className="serif">{peso(pkg.price)}</span>
+                </p>
+              </li>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Services/Treatments Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {spaData.categories.map((category) => (
-            <div key={category.id} className={activeCategory === category.id ? 'block' : 'hidden'}>
-              <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                    {category.title}
-                  </h2>
-                  <p className="text-2xl text-amber-600 font-light">
-                    {category.subtitle}
-                  </p>
-                </div>
-              </ScrollTrigger>
-
-              {/* Services Grid */}
-              {category.services && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                  {category.services.map((service, index) => (
-                    <motion.div
-                      key={service.id}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                    >
-                      <div className="p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-amber-600 transition-colors">
-                          {service.name}
-                        </h3>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                          {service.description}
-                        </p>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-gray-700">{service.duration60}</span>
-                            <span className="text-2xl font-bold text-amber-600">
-                              {formatPrice(service.price60)}
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-gray-700">{service.duration90}</span>
-                            <span className="text-2xl font-bold text-amber-600">
-                              {formatPrice(service.price90)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-
-              {/* Treatments Grid */}
-              {category.treatments && (
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {category.treatments.map((treatment, index) => (
-                    <motion.div
-                      key={treatment.id}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-                    >
-                      <div className="p-8">
-                        <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-amber-600 transition-colors">
-                          {treatment.name}
-                        </h3>
-                        {treatment.description && (
-                          <p className="text-gray-600 mb-6 leading-relaxed">
-                            {treatment.description}
-                          </p>
-                        )}
-                        {treatment.price && (
-                          <div className="text-right">
-                            <span className="text-3xl font-bold text-amber-600">
-                              {formatPrice(treatment.price)}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Packages Section */}
-      <section className="py-20 bg-gradient-to-br from-amber-100 to-orange-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Treatment Packages
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Experience the ultimate pampering with our curated treatment packages
-              </p>
-            </div>
-          </ScrollTrigger>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {spaData.packages.map((pkg, index) => (
-              <motion.div
-                key={pkg.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-              >
-                <div className="p-8 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-amber-600 transition-colors">
-                    {pkg.name}
-                  </h3>
-                  <p className="text-gray-600 mb-8 leading-relaxed">
-                    {pkg.description}
-                  </p>
-                  <div className="text-4xl font-bold text-amber-600 mb-6">
-                    {formatPrice(pkg.price)}
-                  </div>
-                  <button className="w-full bg-amber-600 text-white py-3 px-6 rounded-full font-medium hover:bg-amber-700 transition-colors">
-                    Book Package
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Booking Info Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <ScrollTrigger animationType="slide-bottom" threshold={0.2}>
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                {spaData.bookingInfo.title}
-              </h2>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
-                {spaData.bookingInfo.description}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-amber-600 text-white py-4 px-8 rounded-full font-medium hover:bg-amber-700 transition-colors text-lg">
-                  Book Your Treatment
-                </button>
-                <button className="border-2 border-white text-white py-4 px-8 rounded-full font-medium hover:bg-white hover:text-gray-900 transition-colors text-lg">
-                  Contact Us
-                </button>
-              </div>
-            </motion.div>
-          </ScrollTrigger>
-        </div>
-      </section>
-    </div>
+          </ol>
+        </section>
+        <Enquiry
+          eyebrow={spaData.bookingInfo.title}
+          lines={['Book before', 'you arrive.']}
+          text="Start your holiday relaxed: book your massage or treatments before you arrive, and unwind after the journey."
+          contacts={deskContacts.map((contact, i) => (i === 0 ? { ...contact, label: 'Write to the spa' } : contact))}
+        >
+          <EnquiryForm
+            id="spa"
+            to={site.bookingEmail}
+            subject="Spa booking"
+            choice={{ label: 'Treatment', groups: choiceGroups }}
+            date="Date"
+            time={{ label: 'Time', options: ['Morning', 'Afternoon', 'Evening'] }}
+            guests="Guests"
+            message="Anything we should know, e.g. pressure, injuries"
+            submit="Request a booking"
+          />
+        </Enquiry>
+      </main>
+      <BackToTop />
+      <PageMotion />
+    </>
   );
 }

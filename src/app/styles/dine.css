@@ -1,0 +1,436 @@
+/* The dining pages (/dining and /dining/menu/*): the running list of
+   Filipino dishes, the menu index, the sticky category bar, the menu itself
+   and the pager between categories. Shared sections come from sections.css;
+   motion from PageMotion (reveals) and MenuNav. */
+
+/* -------------------------------------------------------------- marquee */
+
+.marquee {
+  overflow: hidden;
+  padding: clamp(70px, 8vw, 110px) 0 clamp(30px, 4vw, 60px);
+}
+
+.marquee__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px 24px;
+  margin-bottom: 18px;
+  padding: 0 var(--pad);
+}
+
+/* Two copies of the row side by side; sliding one row's width loops. */
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 80s linear infinite;
+}
+
+.marquee__track:hover {
+  animation-play-state: paused;
+}
+
+.marquee__row {
+  display: flex;
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.marquee__row li {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 3vw, 48px);
+  padding-right: clamp(24px, 3vw, 48px);
+  font-size: clamp(44px, 6.6vw, 108px);
+  font-style: italic;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.marquee__row li::after {
+  content: '';
+  width: 0.13em;
+  height: 0.13em;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Without motion the dishes simply wrap, listed once. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    width: auto;
+    padding: 0 var(--pad);
+    animation: none;
+  }
+
+  .marquee__row {
+    flex-wrap: wrap;
+  }
+
+  .marquee__row[aria-hidden] {
+    display: none;
+  }
+
+  .marquee__row li {
+    font-size: clamp(28px, 3.4vw, 48px);
+  }
+}
+
+/* ----------------------------------------------------------- menu index */
+
+.fare {
+  padding: clamp(70px, 8vw, 110px) var(--pad) clamp(90px, 10vw, 140px);
+}
+
+.fare__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 64px;
+  margin-bottom: 40px;
+}
+
+.fare__title {
+  margin-top: 18px;
+  font-size: clamp(44px, 5.4vw, 82px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+}
+
+/* Food takes two columns of its own; drinks and wine one each. */
+.fare__groups {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 44px clamp(24px, 4vw, 64px);
+  padding-top: 26px;
+  border-top: 1px solid var(--ink);
+}
+
+.fare__label {
+  margin-bottom: 12px;
+}
+
+.fare__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fare__group:first-child .fare__links {
+  columns: 2;
+  column-gap: clamp(24px, 4vw, 64px);
+}
+
+.fare__links li {
+  break-inside: avoid;
+}
+
+.fare__link {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+}
+
+.fare__name {
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.3;
+  transition: padding 0.5s var(--ease-out);
+}
+
+.fare__link:hover .fare__name {
+  padding-left: 10px;
+}
+
+.fare__count {
+  font-size: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 900px) {
+  .fare__groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .fare__group:first-child .fare__links {
+    columns: 1;
+  }
+}
+
+/* --------------------------------------------------------- category bar */
+
+/* Sticks to the top, or just under the header while the header shows. */
+.menunav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--rule);
+  background: rgba(244, 239, 231, 0.92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: top 0.6s var(--ease-out);
+}
+
+body:has(.header:not(.is-hidden)) .menunav {
+  top: 86px;
+}
+
+.menunav__bar {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding: 12px var(--pad);
+  scrollbar-width: none;
+}
+
+.menunav__bar::-webkit-scrollbar {
+  display: none;
+}
+
+.menunav__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.menunav__label {
+  margin-right: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.menunav__chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 12px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.menunav__chip[aria-current='true'] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (max-width: 560px) {
+  body:has(.header:not(.is-hidden)) .menunav {
+    top: 62px;
+  }
+}
+
+/* ----------------------------------------------------------------- menu */
+
+.carte {
+  padding: clamp(44px, 5vw, 70px) var(--pad) clamp(90px, 10vw, 140px);
+}
+
+.carte__note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.carte__group {
+  padding-top: clamp(50px, 6vw, 90px);
+}
+
+.carte__label {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--ink);
+  font-size: clamp(64px, 11vw, 180px);
+  font-style: italic;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+/* Category name on the left, its dishes in two columns on the right. */
+.carte__section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  gap: 20px clamp(32px, 5vw, 80px);
+  padding: clamp(40px, 5vw, 64px) 0;
+  border-bottom: 1px solid var(--rule);
+  scroll-margin-top: 100px;
+}
+
+.carte__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.carte__section .carte__head {
+  position: sticky;
+  top: 170px;
+  align-self: start;
+}
+
+.carte__title {
+  font-size: clamp(32px, 3.2vw, 48px);
+  line-height: 1;
+}
+
+.carte__own {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.carte__own::after {
+  content: ' ↗';
+}
+
+/* One category on its own page: the name above, the dishes full width. */
+.carte--one {
+  padding-top: clamp(64px, 8vw, 110px);
+}
+
+.carte--one .carte__head {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.carte--one .carte__title {
+  font-size: clamp(44px, 5.4vw, 82px);
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 900px) {
+  .carte__section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .carte__section .carte__head {
+    position: static;
+  }
+}
+
+/* --------------------------------------------------------------- dishes */
+
+.dishes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(28px, 4vw, 56px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dish {
+  padding: 16px 0 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Name · · · · · price */
+.dish__top {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.dish__name {
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.3;
+}
+
+.dish__leader {
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 1px dotted rgba(21, 43, 71, 0.35);
+  translate: 0 -5px;
+}
+
+.dish__price {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dish__text {
+  max-width: 46ch;
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--body);
+}
+
+.dish__code {
+  margin-left: 8px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+@media (max-width: 640px) {
+  .dishes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------------------------------------------------------------- pager */
+
+.pager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 0 var(--pad) clamp(80px, 9vw, 120px);
+}
+
+.pager__link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+}
+
+.pager__name {
+  font-size: clamp(19px, 1.8vw, 26px);
+  line-height: 1.2;
+}
+
+.pager__link--next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .pager {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pager__all {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+  }
+}

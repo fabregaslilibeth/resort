@@ -1,0 +1,568 @@
+/* The dive pages (/diving and /dive/*): the depth chart, the site finder and
+   its drawer, and the Divemaster packages and
+   phases. Shared sections come from sections.css; motion from PageMotion
+   (reveals) and SiteFinder (filter). */
+
+/* ---------------------------------------------------------- depth chart */
+
+/* Each site's range on a 0–40 m scale. The bars grow as they scroll in
+   where the browser supports scroll-driven animation. */
+.depths {
+  --track-line: rgba(247, 242, 234, 0.16);
+  --bar: linear-gradient(90deg, var(--mist), var(--paper));
+  padding: clamp(90px, 10vw, 140px) var(--pad);
+  background: linear-gradient(180deg, var(--deep) 0%, var(--sea) 100%);
+  color: var(--paper);
+}
+
+.depths__head {
+  margin-bottom: 52px;
+}
+
+.depths__eyebrow {
+  color: var(--mist);
+}
+
+.depths__title {
+  margin-top: 18px;
+  font-size: clamp(44px, 5.4vw, 82px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+}
+
+.depths__chart {
+  border-top: 1px solid rgba(247, 242, 234, 0.4);
+}
+
+.depths__scale,
+.depths__row {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.9fr) minmax(0, 2fr);
+  align-items: center;
+  gap: 10px 40px;
+}
+
+.depths__scale {
+  padding: 14px 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.depths__row {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--track-line);
+}
+
+.depths__name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.25;
+}
+
+.depths__name small {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--mist);
+}
+
+.depths__ticks {
+  position: relative;
+  display: block;
+  height: 1.5em;
+}
+
+/* Placed along the scale inline (DepthTicks); the ends sit inside it. */
+.depths__ticks span {
+  position: absolute;
+  top: 0;
+  translate: -50% 0;
+  white-space: nowrap;
+}
+
+.depths__ticks span:first-child {
+  translate: none;
+}
+
+.depths__ticks span:last-child {
+  translate: -100% 0;
+}
+
+/* A rule every 10 m (--step, set inline for the scale), the range as a bar across them. */
+.depths__track {
+  position: relative;
+  display: block;
+  height: 14px;
+  border-right: 1px solid var(--track-line);
+  background: linear-gradient(90deg, var(--track-line) 1px, transparent 1px) 0 0 / var(--step, 25%) 100%;
+}
+
+.depths__none {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  translate: 0 -50%;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.depths__bar {
+  position: absolute;
+  top: calc(50% - 3px);
+  height: 6px;
+  border-radius: 999px;
+  background: var(--bar);
+  transform-origin: left center;
+  transition: filter 0.3s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .depths__bar {
+      animation: depth-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 35%;
+    }
+  }
+}
+
+@keyframes depth-grow {
+  from {
+    scale: 0 1;
+  }
+}
+
+.depths__all {
+  margin-top: 32px;
+}
+
+:where(.site) .depths__all:hover {
+  color: var(--orange);
+}
+
+@media (max-width: 700px) {
+  .depths__scale,
+  .depths__row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .depths__scale > :first-child {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------- site finder */
+
+.finder {
+  --track-line: rgba(21, 43, 71, 0.14);
+  --bar: var(--ink);
+  padding: clamp(64px, 8vw, 110px) var(--pad) clamp(70px, 8vw, 110px);
+}
+
+.finder__bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.finder__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  grid-column: 1;
+}
+
+.finder__count {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Number · name · depth · open */
+.finder__scale,
+.finder__row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1.1fr) minmax(0, 2fr) 32px;
+  align-items: center;
+  gap: 10px clamp(20px, 3vw, 40px);
+}
+
+.finder__scale {
+  padding: 14px 0;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.finder__scale > :first-child {
+  grid-column: 1 / 3;
+}
+
+.finder__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.finder__row {
+  width: 100%;
+  padding: 22px 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.finder__row:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+}
+
+.finder__num {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.finder__name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.finder__title {
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.25;
+  transition: color 0.3s;
+}
+
+.finder__name small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.finder__more {
+  justify-self: end;
+  font-size: 18px;
+  transition: translate 0.5s var(--ease-out), color 0.3s;
+}
+
+.finder__row:hover .finder__title,
+.finder__row:hover .finder__more {
+  color: var(--orange);
+}
+
+.finder__row:hover .finder__more {
+  translate: 3px -3px;
+}
+
+.finder__row:hover .depths__bar {
+  background: var(--orange);
+}
+
+.finder__empty {
+  padding: 48px 0;
+  font-size: 17px;
+  color: var(--body);
+}
+
+@media (max-width: 700px) {
+  .finder__bar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .finder__count {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .finder__scale,
+  .finder__row {
+    grid-template-columns: 32px minmax(0, 1fr) 20px;
+  }
+
+  .finder__scale > :first-child {
+    grid-column: 1;
+  }
+
+  .finder__row .depths__track {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+/* The drawer's write-up of one site. */
+.site__specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 24px;
+  margin: 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Some sites have only a write-up. */
+.site__specs:empty {
+  display: none;
+}
+
+.site__specs dt {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.site__specs dd {
+  margin: 2px 0 0;
+  font-family: var(--serif);
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.site__text {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--body);
+}
+
+.site__group {
+  display: grid;
+  gap: 12px;
+}
+
+.site__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site__tags li {
+  padding: 5px 14px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--body);
+}
+
+.site__list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--body);
+}
+
+.site__list li::before {
+  content: '— ';
+}
+
+.site__ask {
+  justify-self: start;
+}
+
+/* ------------------------------------------------ divemaster: packages */
+
+.packages {
+  padding: clamp(90px, 10vw, 140px) var(--pad) clamp(60px, 7vw, 100px);
+}
+
+.packages__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.package {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px clamp(20px, 2.6vw, 40px) 8px;
+  border-left: 1px solid var(--rule);
+}
+
+.package:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.package:last-child {
+  padding-right: 0;
+}
+
+.package__name {
+  font-size: clamp(52px, 5.4vw, 84px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.package__price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.package__price .serif {
+  font-size: clamp(34px, 3vw, 46px);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+.package__list {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule);
+}
+
+.package__list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--body);
+}
+
+/* What Silver and Gold add over Bronze. */
+.package__list .is-extra {
+  color: var(--ink);
+}
+
+.package__list .is-extra::before {
+  content: '+ ';
+  color: var(--accent);
+}
+
+.package__extra {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.package__cta {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .packages__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .package,
+  .package:first-child {
+    padding: 30px 0 36px;
+    border-left: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .package:first-child {
+    border-top: 0;
+  }
+}
+
+/* -------------------------------------------------- divemaster: phases */
+
+/* The three phases on one timeline: across on wide screens, down on narrow. */
+.phases {
+  padding: clamp(90px, 10vw, 140px) var(--pad);
+  background: var(--sand-2);
+}
+
+.phases__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px clamp(24px, 3vw, 48px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.phase {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 32px;
+}
+
+.phase::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.phase__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.phase__title {
+  font-size: clamp(20px, 1.7vw, 25px);
+  line-height: 1.25;
+}
+
+.phase__list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--body);
+}
+
+.phase__list li::before {
+  content: '— ';
+}
+
+@media (max-width: 800px) {
+  .phases__list {
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: 5px;
+    border-top: 0;
+    border-left: 1px solid var(--ink);
+  }
+
+  .phase {
+    padding: 0 0 0 30px;
+  }
+
+  .phase::before {
+    top: 4px;
+    left: -6px;
+  }
+}

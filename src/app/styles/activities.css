@@ -1,0 +1,68 @@
+/* The spa's packages, side by side. Everything else on the activities and
+   spa pages comes from sections.css; motion from PageMotion (reveals). */
+
+.trio {
+  padding: clamp(80px, 9vw, 130px) var(--pad);
+  background: var(--sand-2);
+}
+
+.trio__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.trio__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 30px clamp(20px, 2.6vw, 40px) 8px;
+  border-left: 1px solid var(--rule);
+}
+
+.trio__item:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.trio__item:last-child {
+  padding-right: 0;
+}
+
+/* "A", "B", "C" set large, like a monogram. */
+.trio__name {
+  font-size: clamp(80px, 9vw, 140px);
+  font-style: italic;
+  line-height: 0.85;
+}
+
+.trio__text {
+  flex: 1;
+  max-width: 36ch;
+  color: var(--body);
+}
+
+.trio__price .serif {
+  font-size: clamp(34px, 3vw, 46px);
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .trio__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .trio__item,
+  .trio__item:first-child {
+    padding: 30px 0 36px;
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .trio__item:first-child {
+    border-top: 0;
+  }
+}

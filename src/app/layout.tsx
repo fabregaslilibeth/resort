@@ -1,27 +1,26 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import { Whisper } from "next/font/google";
-import { Montserrat } from "next/font/google";
+import { Hanken_Grotesk, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import BackToTop from "./components/BackToTop";
+import "./styles/site.css";
+import "./styles/sections.css";
+import { villas } from "@/data/villas";
+import { toVillaCards } from "./components/villas/villa-cards";
+import { CurtainProvider } from "./components/site/Curtain";
+import { SiteChrome } from "./components/site/SiteChrome";
 
-const roboto = Roboto({
-  variable: "--font-geist-sans",
+// The site's two faces: Instrument Serif for headings (its italic for
+// the second line of a thought), Hanken Grotesk for everything else.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
-const whisper = Whisper({
-  variable: "--font-whisper",
+const hankenGrotesk = Hanken_Grotesk({
+  variable: "--font-hanken-grotesk",
   subsets: ["latin"],
-  weight: ["400"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -32,22 +31,36 @@ export const metadata: Metadata = {
   },
 };
 
+// Before first paint: hold the page's hero back for its entrance (PageMotion
+// or HomeMotion plays it); on the homepage, also play the loader on the
+// first visit of the session.
+const introScript = `(function (root) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  root.classList.add('hero-pending');
+  if (location.pathname !== '/') return;
+  try {
+    if (!sessionStorage.getItem('intro-seen')) root.classList.add('intro');
+  } catch (e) {}
+})(document.documentElement);`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const villaNames = toVillaCards(villas).map((villa) => villa.name);
+
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
+      </head>
       <body
-        className={`${roboto.variable} ${whisper.variable} ${montserrat.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${hankenGrotesk.variable} antialiased`}
       >
-        <Navbar isScrolling={false} />
-        <div className="pt-20 font-montserrat">
-          {children}
-        </div>
-        <Footer />
-        <BackToTop />
+        <CurtainProvider>
+          <SiteChrome villas={villaNames}>{children}</SiteChrome>
+        </CurtainProvider>
       </body>
     </html>
   );

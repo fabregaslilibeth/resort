@@ -1,140 +1,112 @@
+import type { Metadata } from 'next';
+import { site } from '@/data/site';
+import { Enquiry } from '../components/sections/Enquiry';
+import { EnquiryForm } from '../components/sections/EnquiryForm';
+import { LinkCards } from '../components/sections/LinkCards';
+import { BackToTop } from '../components/site/BackToTop';
+import { PageHero } from '../components/site/PageHero';
+import { PageMotion } from '../components/site/PageMotion';
+import '../styles/info.css';
+
+export const metadata: Metadata = {
+  title: 'Contact · Lalaguna Villas, Puerto Galera',
+  description: `Lalaguna Villas, Small Lalaguna Beach, Sabang, Puerto Galera. Call ${site.phones[0]} or write to ${site.bookingEmail}; the front desk is open 24 hours.`,
+};
+
+const MAP = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Lalaguna Villas Luxury Dive Resort and Spa, Sabang, Puerto Galera')}`;
+
+const tel = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
+
 export default function ContactPage() {
   return (
-    <div className="min-h-screen pt-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Contact Us
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get in touch with us for reservations, inquiries, or any questions about your stay.
-          </p>
-        </div>
-        
-        <div className="grid lg:grid-cols-2 gap-16 mb-16">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Get In Touch
-            </h2>
-            <p className="text-gray-600 mb-8">
-              We&apos;re here to help make your stay perfect. Contact us for reservations, 
-              special requests, or any questions you might have.
+    <>
+      <main id="main">
+        <PageHero
+          eyebrow="(Contact) Lalaguna Villas"
+          lines={['Write, call,', 'or just come by.']}
+          lead="Small Lalaguna Beach, Sabang, Puerto Galera. The front desk is open 24 hours a day."
+          image="/images/home/evening.jpg"
+          alt="Two guests on the terrace at dusk, string lights over the water"
+        />
+        <section className="board" aria-labelledby="board-title">
+          <h2 className="sr-only" id="board-title">
+            How to reach us
+          </h2>
+          <div className="board__item" data-reveal>
+            <p className="eyebrow">Find us</p>
+            <address className="serif board__value">
+              {site.address.map((line) => (
+                <span key={line}>
+                  {line}
+                  <br />
+                </span>
+              ))}
+            </address>
+            <a className="text-link" href={MAP} target="_blank" rel="noopener noreferrer">
+              Open in Google Maps
+            </a>
+          </div>
+          <div className="board__item" data-reveal>
+            <p className="eyebrow">Call</p>
+            <p className="serif board__value">
+              {site.phones.map((phone) => (
+                <span key={phone}>
+                  <a href={tel(phone)}>{phone}</a>
+                  <br />
+                </span>
+              ))}
             </p>
-            
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-xl">📞</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
-                  <p className="text-gray-600">+1 (555) 987-6543</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-xl">✉️</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Email</h3>
-                  <p className="text-gray-600">info@lalagunavillas.com</p>
-                  <p className="text-gray-600">reservations@lalagunavillas.com</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <span className="text-xl">📍</span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Address</h3>
-                  <p className="text-gray-600">123 Paradise Beach Road</p>
-                  <p className="text-gray-600">Tropical Island, TI 12345</p>
-                </div>
-              </div>
-            </div>
+            <p className="board__note">{site.phones[0]} is on WhatsApp, WeChat and Viber too.</p>
           </div>
-          
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Your first name"
-                  />
+          <div className="board__item" data-reveal>
+            <p className="eyebrow">Write</p>
+            <dl className="board__emails">
+              {site.emails.map((email) => (
+                <div key={email.address}>
+                  <dt>{email.label}</dt>
+                  <dd className="serif">
+                    <a href={`mailto:${email.address}`}>{email.address}</a>
+                  </dd>
                 </div>
-                <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Your last name"
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                  Subject
-                </label>
-                <select
-                  id="subject"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="reservation">Reservation Inquiry</option>
-                  <option value="general">General Information</option>
-                  <option value="feedback">Feedback</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Your message..."
-                ></textarea>
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-2xl hover:bg-blue-700 transition-all duration-300 font-medium"
-              >
-                Send Message
-              </button>
-            </form>
+              ))}
+            </dl>
           </div>
-        </div>
-      </div>
-    </div>
+        </section>
+        <Enquiry
+          eyebrow="Send a message"
+          lines={['How can', 'we help?']}
+          text="Questions about a stay, the diving, the spa or getting here: send us a note and we’ll reply by email."
+          contacts={site.emails.map((email) => ({ label: email.label, value: email.address, href: `mailto:${email.address}` }))}
+        >
+          <EnquiryForm
+            id="contact"
+            to={site.bookingEmail}
+            subject="Enquiry"
+            choice={{
+              label: 'About',
+              groups: [
+                {
+                  label: 'Subject',
+                  options: ['A stay', 'Diving', 'Becoming a Divemaster', 'Dining', 'The spa', 'Activities', 'Transfers', 'Something else'],
+                },
+              ],
+            }}
+            message="Your message"
+            submit="Send message"
+          />
+        </Enquiry>
+        <LinkCards
+          eyebrow="Before you come"
+          lines={['Plan', 'the trip.']}
+          cards={[
+            { href: '/transport', image: '/images/home/boat-bow.jpg', title: 'Getting here', text: 'Transfers from Manila and the ferry ports' },
+            { href: '/villas', image: '/images/home/pool-villas.jpg', title: 'The villas', text: 'Nine ways to stay' },
+            { href: '/offers', image: '/images/home/pool.jpg', title: 'Book direct', text: 'What you get for booking with us' },
+          ]}
+        />
+      </main>
+      <BackToTop />
+      <PageMotion />
+    </>
   );
-} 
+}
